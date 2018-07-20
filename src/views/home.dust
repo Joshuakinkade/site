@@ -1,0 +1,36 @@
+{>"layout"/}
+
+{<pageStyles}
+  <link rel="stylesheet" href="/css/home.css"/>
+{/pageStyles}
+
+{<content}
+  <div class="scripture">
+    <blockquote>
+      <p>As a father pities <i>his</i> children, So the Lord pities those who fear Him.</p>
+      <cite>Psalm 103:13</cite>
+    </blockquote>
+  </div>
+  <div class="recent-posts">
+    <h2>Recent Posts</h2>
+    <div class="posts">
+      {#recents}
+        <div class="post-summary">
+          {@eq key=type value="Album"}
+            <h3>{name}</h3>
+            <div class="sample">
+              {?coverPhoto}
+                <img src="/pictures/{slug}/thumb/{coverPhoto.filename}"/>
+              {:else}
+                <img src="/images/no-photo.jpg"/>
+              {/coverPhoto}
+            </div>
+          {/eq}
+          {@eq key=type value="Post"}
+            <h3>{title}</h3>
+          {/eq}
+        </div>
+      {/recents}
+    </div>
+  </div>
+{/content}

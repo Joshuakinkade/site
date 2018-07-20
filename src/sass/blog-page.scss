@@ -1,0 +1,24 @@
+@import "./components/page-header";
+
+
+.post {
+  header h2 {
+    margin-bottom: .5em;
+  }
+
+  .more {
+    margin: 0;
+  }
+}
+
+.post .post-content {
+  // padding: 0 .5em;
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}

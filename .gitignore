@@ -1,0 +1,8 @@
+.vscode
+node_modules
+pictures
+.env
+
+
+public/css/*.css
+public/css/*.css.map

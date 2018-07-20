@@ -1,0 +1,41 @@
+{
+  "name": "site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch",
+    "sass": "sass --watch .\\src\\sass\\:.\\public\\css\\",
+    "start": "node .\\src\\bootstrap.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "adaro": "^1.0.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "bookshelf": "^0.13.3",
+    "chalk": "^2.4.1",
+    "compression": "^1.7.2",
+    "consolidate": "^0.15.1",
+    "dotenv": "^6.0.0",
+    "dustjs-linkedin": "^2.7.5",
+    "exif-parser": "^0.1.12",
+    "express": "^4.16.3",
+    "express-nunjucks": "^2.2.3",
+    "imagemagick": "^0.1.3",
+    "jimp": "^0.2.28",
+    "jstransformer-markdown-it": "^2.1.0",
+    "knex": "^0.14.6",
+    "luxon": "^1.3.0",
+    "marked": "^0.4.0",
+    "multer": "^1.3.1",
+    "mysql": "^2.15.0",
+    "nunjucks": "^3.1.3",
+    "pug": "^2.0.3",
+    "sharp": "^0.20.5"
+  },
+  "devDependencies": {
+    "jest": "^23.4.1"
+  }
+}

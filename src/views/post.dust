@@ -1,0 +1,14 @@
+{>"layout"/}
+
+{<pageStyles}
+  <link rel="stylesheet" href="/css/post.css"/>
+{/pageStyles}
+
+{<content}
+  <header class="page-header">
+    <h1>{post.title}</h1>
+  </header>
+  <main class="content">
+    {post.text|md|s}
+  </main>
+{/content}

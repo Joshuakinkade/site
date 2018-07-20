@@ -1,0 +1,28 @@
+{>"layout"/}
+
+{<pageStyles}
+  <link rel="stylesheet" href="/css/blog-page.css"/>
+{/pageStyles}
+
+{<content}
+  <header class="page-header">
+    <h1>Josh's Blog</h1>
+  </header>
+  <main>
+    <div class="post-list">
+      {#posts}
+        <div class="post">
+          <header>
+            <h2>{title}</h2>
+          </header>
+          <main class="post-content">
+            {text|md|s|snippet}&#8230;
+          </main>
+          <p class="more">
+            <a href="/blog/{slug}">Read More</a>
+          </p>
+        </div>
+      {/posts}
+    </div>
+  </main>
+{/content}

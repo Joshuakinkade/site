@@ -1,0 +1,54 @@
+#site-header {
+  height: 40px;
+  padding: .5em;
+  box-sizing: border-box;
+  display: flex;
+
+  .logo {
+    display: inline-block;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .site-menu {
+    position: relative;
+    flex: 1;
+    text-align: right;
+  }
+
+  .site-menu nav {
+    display: none;
+    position: fixed;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 1em;
+    z-index: 10;
+    border-top: solid gray 1px;
+    border-bottom: solid gray 1px;
+  }
+
+  .site-menu nav.active {
+    display: block;
+  }
+
+  .site-menu nav ul {
+    background-color: white;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+
+    li {
+      padding: 1em;
+      border-top: solid gray 1px;
+
+      &:first-child {
+        border-top: none;
+      }
+    }
+  }
+}

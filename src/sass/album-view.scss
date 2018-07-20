@@ -1,0 +1,73 @@
+@import "components/photo-block";
+@import "components/page-header";
+
+// Components
+.gallery-header {
+  .text {
+    padding: 1em;
+  }
+
+  h1 {
+    border-bottom: solid gray 1px;
+    font-weight: 100;
+    margin: 0;
+  }
+
+  .details {
+    padding-left: .5em;
+
+    p {
+      margin: 0;
+      color: lightgray;
+    }
+  }
+}
+
+// Layout
+.photo-grid {
+  line-height: 0;
+  padding-bottom: 1em;
+  padding-top: .5em;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: .5em;
+}
+
+@media (min-width: 768px) {
+  .photo-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .photo-grid {
+    grid-template-columns:  repeat(8, 1fr);
+  }
+}
+
+.jk-gallery {
+  z-index: 2000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: #222;
+  color: #fff;
+
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .photo-container {
+    flex: 1;
+
+    img {
+      image-orientation: from-image;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}

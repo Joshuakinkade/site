@@ -1,0 +1,35 @@
+{>"layout"/}
+
+{<pageStyles}
+  <link rel="stylesheet" href="/css/photos.css"/>
+{/pageStyles}
+
+{<content}
+  <header class="page-header">
+    <h1>Josh's Pictures</h1>
+  </header>
+  <main class="gallery">
+    <div class="photo-grid">
+      {#albums}
+        <div class="tile">
+          <a href="/pictures/{slug}">
+            <div class="photo-block">
+              <div class="photo-outer">
+                <div class="photo-inner">
+                  {?coverPhoto}
+                    <img src="/pictures/{slug}/thumb/{coverPhoto.filename}"/>
+                  {:else}
+                    <img src="/images/no-photo.jpg"/>
+                  {/coverPhoto}
+                </div>
+              </div>
+              <div class="text">
+                <h2>{name}</h2>
+              </div>
+            </div>
+          </a>
+        </div>
+      {/albums}
+    </div>
+  </main>
+{/content}

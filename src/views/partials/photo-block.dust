@@ -1,0 +1,11 @@
+<div class="tile">
+  <a href="/pictures/{album_name}/full/{filename}" class="photo-link">
+    <div class="photo-block">
+      <div class="photo-outer">
+        <div class="photo-inner">
+          <img src="/pictures/{album_name}/thumb/{filename}"/>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
