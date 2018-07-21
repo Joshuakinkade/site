@@ -50,6 +50,9 @@ export const Photo = models.Model.extend({
 
 export const Post = models.Model.extend({
   tableName: 'posts',
+  coverPhoto: function() {
+    return this.hasOne(Photo, 'id', 'cover_photo');
+  },
   parse: function(response) {
     response.post_date = DateTime.fromJSDate(response.post_date);
     return response;

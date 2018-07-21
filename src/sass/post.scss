@@ -1,1 +1,12 @@
 @import "./components/page-header";
+
+.content {
+  p {
+    font-family: serif;
+  }
+
+  h2 {
+    font-size: 25px;
+    font-weight: 600;
+  }
+}

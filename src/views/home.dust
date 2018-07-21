@@ -6,9 +6,9 @@
 
 {<content}
   <div class="scripture">
-    <blockquote>
-      <p>As a father pities <i>his</i> children, So the Lord pities those who fear Him.</p>
-      <cite>Psalm 103:13</cite>
+    <blockquote class="clearfix">
+      <p>But if we walk in the light as He is in the light, he have fellowship with one another, and the blood of Jesus Christ His Son cleanses us from all sin.</p>
+      <cite>1 John 1:7</cite>
     </blockquote>
   </div>
   <div class="recent-posts">
@@ -17,17 +17,40 @@
       {#recents}
         <div class="post-summary">
           {@eq key=type value="Album"}
-            <h3>{name}</h3>
-            <div class="sample">
-              {?coverPhoto}
-                <img src="/pictures/{slug}/thumb/{coverPhoto.filename}"/>
-              {:else}
-                <img src="/images/no-photo.jpg"/>
-              {/coverPhoto}
-            </div>
+            <a href="/pictures/{slug}">
+              <h3>{name}</h3>
+              <div class="sample">
+                <div class="photo-block">
+                  <div class="photo-outer mid">
+                    <div class="photo-inner">
+                      {?coverPhoto}
+                        <img src="/pictures/{slug}/thumb/{coverPhoto.filename}"/>
+                      {:else}
+                        <img src="/images/no-photo.jpg"/>
+                      {/coverPhoto}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
           {/eq}
           {@eq key=type value="Post"}
-            <h3>{title}</h3>
+            <a href="/blog/{slug}">
+              <h3>{title}</h3>
+              <div class="sample">
+                <div class="photo-block">
+                  <div class="photo-outer mid">
+                    <div class="photo-inner">
+                      {?coverPhoto}
+                        <img src="/pictures/{slug}/thumb/{coverPhoto.filename}"/>
+                      {:else}
+                        <img src="/images/no-photo.jpg"/>
+                      {/coverPhoto}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
           {/eq}
         </div>
       {/recents}

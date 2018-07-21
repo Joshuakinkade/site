@@ -1,13 +1,28 @@
+@import "variables";
 @import "./components/page-header";
 
 
 .post {
+  display: flex;
+  
   header h2 {
+    font-size: $font-size-4;
     margin-bottom: .5em;
   }
 
   .more {
     margin: 0;
+    font-size: $font-size-1;
+    font-weight: 100;
+  }
+
+  .cover-photo {
+    width: 512px;
+    margin-right: 1em;
+
+    img {
+      max-width: 100%;
+    }
   }
 }
 
@@ -15,10 +30,12 @@
   // padding: 0 .5em;
 
   h2 {
-    font-size: 1.5em;
+    font-size: $font-size-3;
   }
 
   p:last-child {
     margin-bottom: 0;
+    font-family: serif;
+    font-size: $font-size-1;
   }
 }

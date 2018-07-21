@@ -43,7 +43,22 @@ homeController.get('/', (req,res) => {
       context.recents = combineRecents(albums,posts).slice(0,RECENT_POST_COUNT);
 
       res.render('home',context);
+    });
+});
 
+homeController.get('/sitemap.xml', (req,res) => {
+  const queries = [
+    Album.query('orderBy','start_date').fetchAll(),
+    Post.query('orderBy','post_date').fetchAll()
+  ];
+
+  Promise.all(queries)
+    .then( ([albums,posts]) => {
+      albums = albums.toJSON();
+      posts = posts.toJSON();
+      res
+        .set('Content-Type','text/xml')
+        .render('sitemap',{baseUrl:'https://joshuakinkade.me',albums,posts});
     })
 
 });

@@ -4,7 +4,7 @@ import {Post} from '../models/bookshelf';
 const postsController = new Router();
 
 postsController.get('/', (req,res) => {
-  Post.fetchAll()
+  Post.fetchAll({withRelated: ['coverPhoto']})
     .then( posts => {
       posts = posts.toJSON()
       res.render('blog-page',{pageTitle: 'Blog', posts, breadCrumbs:[{url:'/blog',title:'Blog'}]});

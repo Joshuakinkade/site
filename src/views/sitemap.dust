@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemap.org/schema/sitemap/0.9">
+  <url>
+    <loc>{baseUrl}</loc>
+  </url>
+  <url>
+    <loc>{baseUrl}/pictures</loc>
+  </url>
+  <url>
+    <loc>{baseUrl}/posts</loc>
+  </url>
+  {#albums baseUrl=baseUrl}
+    <url>
+      <loc>{baseUrl}/pictures/{slug}</loc>
+    </url>
+  {/albums}
+  {#posts baseUrl=baseUrl}
+    <url>
+      <loc>{baseURl}/posts/{slug}</loc>
+    </url>
+  {/posts}
+</urlset>

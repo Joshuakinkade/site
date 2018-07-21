@@ -18,7 +18,7 @@ export function combineRecents(albums,posts) {
     const post = posts[pi];
 
     // Put the next most recent entry into recents
-    if (album.start_date <= post.post_date) {
+    if (album.start_date >= post.post_date) {
       recents.push(album);
       ai++;
     } else {
