@@ -21,6 +21,8 @@ const logger = new Logger({
 
 const app = express();
 
+app.disable('x-powered-by');
+
 /* Configure Template Engine */
 dust.filters.formatDate = formatDate;
 dust.filters.formatDateTime = formatDateTime;

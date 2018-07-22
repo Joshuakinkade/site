@@ -13,3 +13,19 @@
 - !! add accesibility attributes
 - !!! publish site
   - ! check against Google PageSpeed
+
+## Context
+
+```json
+{
+  "site": {
+    "siteName": "joshuakinkade.me",
+    "baseUrl": "https://joshuakinkade.me"
+  },
+  "page": {
+    "title": "Home",
+    "path": "/"
+  },
+  "ablums":["..."]
+}
+```
