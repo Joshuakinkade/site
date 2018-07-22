@@ -10,5 +10,6 @@
 - ! create global typography rules
 - !! visibily differentiate between post and gallery on recent posts
 - !! optimize pages for Facebook
+- !! add accesibility attributes
 - !!! publish site
   - ! check against Google PageSpeed

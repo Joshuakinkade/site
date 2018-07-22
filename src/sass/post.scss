@@ -1,12 +1,27 @@
 @import "./components/page-header";
+@import "variables";
 
 .content {
   p {
     font-family: serif;
+    font-size: $font-size-2;
   }
 
   h2 {
     font-size: 25px;
     font-weight: 600;
+  }
+
+  img {
+    width: 50%;
+    float: right;
+    margin: 1em;
+  }
+}
+
+@media (min-width: 1200px) {
+  .wrapper {
+    width: 1024px;
+    margin: 0 auto;
   }
 }
