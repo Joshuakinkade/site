@@ -6,13 +6,13 @@
     </button>
     <div id="site-nav" class="collapse navbar-collapse">
       <ul class="navbar-nav md-auto">
-        <li {@eq key=breadCrumbs[0].title value="Home"} class="nav-item active" {:else} class="nav-item" {/eq}>
+        <li {@eq key=rootPath value="/"} class="nav-item active" {:else} class="nav-item" {/eq}>
           <a href="/" class="nav-link">Home</a>
         </li>
-        <li {@eq key=breadCrumbs[0].title value="Pictures"} class="nav-item active" {:else} class"nav-item" {/eq}>
+        <li {@eq key=rootPath value="/pictures"} class="nav-item active" {:else} class"nav-item" {/eq}>
           <a href="/pictures" class="nav-link">Pictures</a>
         </li>
-        <li {@eq key=breadCrumbs[0].title value="Blog"} class="nav-item active" {:else} class="nav-item" {/eq}>
+        <li {@eq key=rootPath value="/blog"} class="nav-item active" {:else} class="nav-item" {/eq}>
           <a href="/blog" class="nav-link">Blog</a>
         </li>
         <li class="nav-item">

@@ -1,19 +1,11 @@
 import {Router} from 'express';
 
 import {Album,Post} from '../models/bookshelf';
-import {combineRecents} from '../lib/helpers';
+import {combineRecents, getContext} from '../lib/helpers';
 
 const homeController = new Router();
 
 homeController.get('/', (req,res) => {
-  const context = {
-    pageTitle: 'Home',
-    breadCrumbs: [{
-      url: '/',
-      title: 'Home'
-    }]
-  };
-
   const RECENT_POST_COUNT = 3;
 
   const queries = [];
@@ -40,9 +32,9 @@ homeController.get('/', (req,res) => {
         return post;
       });
 
-      context.recents = combineRecents(albums,posts).slice(0,RECENT_POST_COUNT);
+      const recents = combineRecents(albums,posts).slice(0,RECENT_POST_COUNT);
 
-      res.render('home',context);
+      res.render('home',getContext('Home', req, {recents}));
     });
 });
 

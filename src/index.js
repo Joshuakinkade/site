@@ -21,6 +21,8 @@ const logger = new Logger({
 
 const app = express();
 
+app.set('site-name', 'joshuakinkade.me');
+
 app.disable('x-powered-by');
 
 /* Configure Template Engine */

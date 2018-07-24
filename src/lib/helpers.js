@@ -36,3 +36,14 @@ export function combineRecents(albums,posts) {
 
   return recents;
 }
+
+export function getContext(title,req,data) {
+  const context = Object.assign({},data);
+
+  context.pageTitle = title;
+  context.siteName = req.app.get('site-name');
+  context.path = req.originalUrl;
+  context.rootPath = '/' + req.originalUrl.split('/')[1];
+
+  return context;
+}

@@ -1,5 +1,6 @@
 import {Router} from 'express';
 import {Post} from '../models/bookshelf';
+import { getContext } from '../lib/helpers';
 
 const postsController = new Router();
 
@@ -7,11 +8,11 @@ postsController.get('/', (req,res) => {
   Post.fetchAll({withRelated: ['coverPhoto']})
     .then( posts => {
       posts = posts.toJSON()
-      res.render('blog-page',{pageTitle: 'Blog', posts, breadCrumbs:[{url:'/blog',title:'Blog'}]});
+      res.render('blog-page', getContext("Josh's Blog", req, {posts}));
       return null;
     })
     .catch( err => {
-      res.render('blog-page',{pageTitle: 'Blog', error:err.message});
+      res.render('blog-page', getContext("Josh's Blog", req, {error: err}));
     });
 });
 
@@ -19,17 +20,10 @@ postsController.get('/:slug', (req,res) => {
   Post.where('slug',req.params.slug).fetch()
     .then( post => {
       post = post.toJSON();
-      res.render('post', {
-        pageTitle: post.title,
-        post,
-        breadCrumbs:[
-          {url: '/blog', title: 'Blog'},
-          {url: `/blog/${post.slug}`, title: post.title}
-        ]
-      })
+      res.render('post', getContext(post.title, req, {post}));
     })
     .catch( err => {
-      res.render('post', {pageTitle: 'Error', error: err.message});
+      res.render('post', getContext(post.title, req, {error: err}));
     });
 });
 

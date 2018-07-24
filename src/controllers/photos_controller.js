@@ -3,7 +3,7 @@ import multer from 'multer';
 import {DateTime} from 'luxon';
 
 import {Album, Photo} from '../models/bookshelf';
-import {getSlug} from '../lib/helpers';
+import {getSlug, getContext} from '../lib/helpers';
 import Photos from '../lib/photos';
 
 const photos = new Photos({
@@ -16,24 +16,15 @@ const upload = multer({buffer: storage});
 const photosController = new Router();
 
 photosController.get('/', (req,res) => {
-  const context = {
-    pageTitle: 'Pictures',
-    breadCrumbs: [{
-      url: '/pictures',
-      title: 'Pictures'
-    }]
-  };
-
   Album.fetchAll({withRelated: ['coverPhoto']})
     .then( albums => {
-      context.albums = albums.toJSON();
-      res.render('photos', context);
+      albums = albums.toJSON();
+      res.render('photos', getContext("Josh's Pictures", req, {albums}));
       return null;
     })
     .catch( err => {
       console.log(err);
-      context.error = err;
-      res.render('photos', context);
+      res.render('photos', getContext("Josh's Picutres", req, {error: err}));
     });
 });
 
@@ -42,18 +33,9 @@ photosController.get('/:albumSlug', (req,res) => {
     .then( album => {
       album = album.toJSON();
       Photo.where('album',album.id).orderBy('date_taken').fetchAll()
-        .then( photos => {          
-          const context = {
-            pageTitle: album.name, 
-            breadCrumbs: [
-              {url: '/pictures', title: 'Pictures'},
-              {url: `/pictures/${album.slug}`, title: album.name}
-            ],
-            album: album,
-            photos: photos.toJSON()
-          }
-
-          res.render('album-view', context)
+        .then( photos => {       
+          photos = photos.toJSON();   
+          res.render('album-view', getContext(album.name, req, {album,photos}));
         });
     });
 });
