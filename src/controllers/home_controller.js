@@ -35,6 +35,10 @@ homeController.get('/', (req,res) => {
       const recents = combineRecents(albums,posts).slice(0,RECENT_POST_COUNT);
 
       res.render('home',getContext('Home', req, {recents}));
+    })
+    .catch( err => {
+      console.error(err);
+      res.render('error-page', getContext('Home', req, {error: err.message}));
     });
 });
 

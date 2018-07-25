@@ -54,7 +54,7 @@ app.use('/pictures',photosController);
 app.use('/blog',postsController);
 
 app.use((req,res) => {
-  res.render('not-found',{pageTitle:'Not Found'});
+  res.render('errors/not-found',{pageTitle:'Not Found'});
 });
 
 /* Start Server */
