@@ -4,7 +4,7 @@ const photos = $('.photo-link')
   .map( (i,item) => {
     $(item).on('click', function(evt) {
       evt.preventDefault();
-      openGallery(0);
+      openGallery(i);
     });
 
     const size = $(item).attr('data-size').split('x');

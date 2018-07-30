@@ -3,7 +3,6 @@
 ## Todo
 
 - !!! consolidate page headers
-- !!! create or find photo viewer
 - !! clean up blog post design
 - !!! clean up blog page design
 - !! fix blog post sample

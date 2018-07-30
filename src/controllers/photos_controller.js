@@ -93,7 +93,9 @@ photosController.post('/:albumId', upload.single('photo'), (req,res) => {
         filename: fileName,
         album: req.params.albumId,
         date_taken: photoInfo.dateTaken,
-        caption: req.body.caption || null
+        caption: req.body.caption || null,
+        height: photoInfo.size.height,
+        width: photoInfo.size.width
       });
 
       return photo.save();
