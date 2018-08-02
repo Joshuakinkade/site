@@ -14,7 +14,7 @@
         <div class="post">
           <div class="cover-photo">
             <div class="photo-block">
-              <div class="photo-outer short">
+              <div class="photo-outer">
                 <div class="photo-inner">
                   <a href="blog/{slug}">
                     {?coverPhoto}
