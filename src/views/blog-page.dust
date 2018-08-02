@@ -13,18 +13,27 @@
       {#posts}
         <div class="post">
           <div class="cover-photo">
-            <img src="/images/no-photo.jpg"/>
+            <div class="photo-block">
+              <div class="photo-outer short">
+                <div class="photo-inner">
+                  <a href="blog/{slug}">
+                    {?coverPhoto}
+                      <img src="/pictures/{coverPhoto.album.slug}/thumb/{coverPhoto.filename}"/>
+                    {:else}
+                      <img src="/images/no-photo.jpg"/>
+                    {/coverPhoto}
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="text">
             <header>
-              <h2>{title}</h2>
+              <h2><a href="/blog/{slug}">{title}</a></h2>
             </header>
             <main class="post-content">
-              {text|md|s|snippet}&#8230;
+              <p>{headline}</p>
             </main>
-            <p class="more">
-              <a href="/blog/{slug}">Read More</a>
-            </p>
           </div>
         </div>
       {/posts}
