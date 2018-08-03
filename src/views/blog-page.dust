@@ -32,7 +32,9 @@
               <h2><a href="/blog/{slug}">{title}</a></h2>
             </header>
             <main class="post-content">
-              <p>{headline}</p>
+              <a href="blog/{slug}">
+                <p>{headline}</p>
+              </a>
             </main>
           </div>
         </div>

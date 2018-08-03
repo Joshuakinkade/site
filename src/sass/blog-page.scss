@@ -33,8 +33,16 @@
 .post .post-content {
   // padding: 0 .5em;
 
-  p {
+  a {
     color: maroon;
+    text-decoration: none;  
+  }
+
+  a:hover {
+    color: darken(maroon, 10%);
+  }
+
+  p {
     margin-bottom: 0;
     font-family: sans-serif;
     font-size: $font-size-2;

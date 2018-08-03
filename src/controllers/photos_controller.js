@@ -1,6 +1,7 @@
 import {Router} from 'express';
 import multer from 'multer';
 import {DateTime} from 'luxon';
+import passport from 'passport';
 
 import {Album, Photo} from '../models/bookshelf';
 import {getSlug, getContext} from '../lib/helpers';
@@ -53,7 +54,7 @@ photosController.get('/:albumSlug/:size/:filename', (req,res) => {
     });
 });
 
-photosController.post('/', upload.single(), (req,res) => {
+photosController.post('/', passport.authenticate('basic', {session: false}), upload.single(), (req,res) => {
   const albumSlug = getSlug(req.body.name);
   const start =  DateTime.fromISO(req.body.startDate);
   const end = DateTime.fromISO(req.body.endDate);

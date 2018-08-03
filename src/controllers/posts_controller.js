@@ -36,10 +36,11 @@ postsController.get('/:slug', (req,res) => {
       post = post.toJSON();
       
       // Get the album for the cover photo
-      Album.where('id',post.coverPhoto.album).fetch()
+      return Album.where('id',post.coverPhoto.album).fetch()
         .then( album => {
           post.coverPhoto.album = album.toJSON();
           res.render('post', getContext(post.title, req, {post}));
+          return null;
         });
     })
     .catch( err => {

@@ -2,6 +2,17 @@ import express from 'express';
 import compression from 'compression';
 import consolidate from 'consolidate';
 import dust from 'dustjs-linkedin';
+import passport from 'passport';
+import {BasicStrategy} from 'passport-http';
+
+passport.use(new BasicStrategy( (username, password, done) => {
+  if (username === process.env.API_USER && password === process.env.API_PASSWORD) {
+    return done(null,{username: process.env.API_USER});
+  } else {
+    return done(null,false);
+  }
+}));
+
 
 import Logger from './lib/logger';
 
