@@ -1,5 +1,7 @@
+import {DateTime} from 'luxon';
 import {Post, Album} from '../models/bookshelf';
-import { getContext } from '../lib/helpers';
+import { getContext, getSlug } from '../lib/helpers';
+import PostParser from '../lib/post-parser';
 
 export const index = (req, res) => {
   Post.fetchAll({withRelated: ['coverPhoto']})
@@ -47,7 +49,33 @@ export const post = (req, res) => {
 };
 
 export const addPost = (req, res) => {
-  // Break file into frontmatter and markdown
-  // Process frontmatter
-  // Save post
+  const postText = req.file.buffer.toString('utf8');
+
+  const parser = new PostParser(postText);
+  try {
+    const postData = parser.parse();
+
+    const postDate = postData.metadata.date ? DateTime.fromISO(postData.metadata.date) : DateTime.utc();
+    if (!postData.metadata.hasOwnProperty('title')) {
+      throw new Error('A title is required');
+    } 
+
+    const post = new Post({
+      title: postData.metadata.title,
+      slug: getSlug(postData.metadata.title),
+      post_date: postDate,
+      headline: postData.metadata.headline || null,
+      text: postData.text
+    });
+
+    post.save()
+      .then( () => {
+        res.status(200).send('ok');
+      })
+      .catch( err => {
+        res.status(500).send(err.message);
+      })
+  } catch(err) {
+    res.status(400).send(err.message);
+  }
 }

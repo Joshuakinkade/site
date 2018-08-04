@@ -56,5 +56,9 @@ export const Post = models.Model.extend({
   parse: function(response) {
     response.post_date = DateTime.fromJSDate(response.post_date);
     return response;
+  },
+  format: function(attributes) {
+    attributes.post_date = attributes.post_date.toJSDate();
+    return attributes;
   }
 });

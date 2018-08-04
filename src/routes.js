@@ -34,4 +34,9 @@ routes.post('/pictures/:albumId',
 routes.get('/blog', posts.index);
 routes.get('/blog/:slug', posts.post);
 
+routes.post('/blog', 
+  passport.authenticate('basic', {session:false}),
+  upload.single('post'),
+  posts.addPost);
+
 export default routes;
