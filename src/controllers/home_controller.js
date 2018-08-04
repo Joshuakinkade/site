@@ -1,11 +1,7 @@
-import {Router} from 'express';
-
 import {Album,Post} from '../models/bookshelf';
 import {combineRecents, getContext} from '../lib/helpers';
 
-const homeController = new Router();
-
-homeController.get('/', (req,res) => {
+export const index = (req,res) => {
   const RECENT_POST_COUNT = 3;
 
   const queries = [];
@@ -40,9 +36,9 @@ homeController.get('/', (req,res) => {
       console.error(err);
       res.render('error-page', getContext('Home', req, {error: err.message}));
     });
-});
+};
 
-homeController.get('/sitemap.xml', (req,res) => {
+export const sitemap = (req,res) => {
   const queries = [
     Album.query('orderBy','start_date').fetchAll(),
     Post.query('orderBy','post_date').fetchAll()
@@ -57,6 +53,4 @@ homeController.get('/sitemap.xml', (req,res) => {
         .render('sitemap',{baseUrl:'https://joshuakinkade.me',albums,posts});
     })
 
-});
-
-export default homeController;
+};

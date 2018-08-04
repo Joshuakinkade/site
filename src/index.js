@@ -13,14 +13,11 @@ passport.use(new BasicStrategy( (username, password, done) => {
   }
 }));
 
-
 import Logger from './lib/logger';
 
 import db from './models/db';
 
-import homeController from './controllers/home_controller';
-import photosController from './controllers/photos_controller';
-import postsController from './controllers/posts_controller';
+import routes from './routes';
 
 import {formatDate, formatDateTime, snippet, md} from './lib/dust-filters';
 
@@ -60,9 +57,7 @@ app.use((req,res,next) => {
 });
 
 /* Configure Routes */
-app.use('/',homeController);
-app.use('/pictures',photosController);
-app.use('/blog',postsController);
+app.use('/',routes);
 
 app.use((req,res) => {
   res.render('errors/not-found',{pageTitle:'Not Found'});

@@ -1,7 +1,5 @@
-import {Router} from 'express';
 import multer from 'multer';
 import {DateTime} from 'luxon';
-import passport from 'passport';
 
 import {Album, Photo} from '../models/bookshelf';
 import {getSlug, getContext} from '../lib/helpers';
@@ -11,12 +9,7 @@ const photos = new Photos({
   rootDir: process.env.PHOTO_ROOT
 });
 
-const storage = multer.memoryStorage();
-const upload = multer({buffer: storage});
-
-const photosController = new Router();
-
-photosController.get('/', (req,res) => {
+export const index = (req,res) => {
   Album.fetchAll({withRelated: ['coverPhoto']})
     .then( albums => {
       albums = albums.toJSON();
@@ -27,9 +20,9 @@ photosController.get('/', (req,res) => {
       console.log(err);
       res.render('photos', getContext("Josh's Picutres", req, {error: err}));
     });
-});
+};
 
-photosController.get('/:albumSlug', (req,res) => {
+export const album = (req,res) => {
   Album.where('slug',req.params.albumSlug).fetch({withRelated:['coverPhoto']})
     .then( album => {
       album = album.toJSON();
@@ -39,9 +32,9 @@ photosController.get('/:albumSlug', (req,res) => {
           res.render('album-view', getContext(album.name, req, {album,photos}));
         });
     });
-});
+};
 
-photosController.get('/:albumSlug/:size/:filename', (req,res) => {
+export const photo = (req,res) => {
   // Load image file from storage`
   photos.getPhoto(req.params.albumSlug,req.params.filename,req.params.size)
     .then( photo => {
@@ -52,32 +45,32 @@ photosController.get('/:albumSlug/:size/:filename', (req,res) => {
       console.error(err);
       res.status(404).send('Not Found');
     });
-});
+};
 
-photosController.post('/', passport.authenticate('basic', {session: false}), upload.single(), (req,res) => {
-  const albumSlug = getSlug(req.body.name);
-  const start =  DateTime.fromISO(req.body.startDate);
-  const end = DateTime.fromISO(req.body.endDate);
+export const createAlbum = (req,res) => {
+    const albumSlug = getSlug(req.body.name);
+    const start =  DateTime.fromISO(req.body.startDate);
+    const end = DateTime.fromISO(req.body.endDate);
 
-  const album = new Album({
-    name: req.body.name,
-    slug: albumSlug,
-    start_date: start.toJSDate(),
-    end_date: end.toJSDate(),
-    description: req.body.description || null
-  });
+    const album = new Album({
+      name: req.body.name,
+      slug: albumSlug,
+      start_date: start.toJSDate(),
+      end_date: end.toJSDate(),
+      description: req.body.description || null
+    });
 
-  album.save()
-    .then( () => {
-      res.send('ok');
-    })
-    .catch( err => {
-      console.error(err);
-      res.send(err.message);
-    })
-});
+    album.save()
+      .then( () => {
+        res.send('ok');
+      })
+      .catch( err => {
+        console.error(err);
+        res.send(err.message);
+      })
+};  
 
-photosController.post('/:albumId', upload.single('photo'), (req,res) => {
+export const addPhoto = (req,res) => {
   // Create a url friendly file name
   const fileName = getSlug(req.file.originalname);
 
@@ -107,7 +100,5 @@ photosController.post('/:albumId', upload.single('photo'), (req,res) => {
     .catch(err => {
       console.log(err);
       res.send(err.message);
-    })
-});
-
-export default photosController;
+    });
+};

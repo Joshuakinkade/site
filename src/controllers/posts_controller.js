@@ -1,10 +1,7 @@
-import {Router} from 'express';
 import {Post, Album} from '../models/bookshelf';
 import { getContext } from '../lib/helpers';
 
-const postsController = new Router();
-
-postsController.get('/', (req,res) => {
+export const index = (req, res) => {
   Post.fetchAll({withRelated: ['coverPhoto']})
     .then( posts => {
       posts = posts.toJSON();
@@ -28,9 +25,9 @@ postsController.get('/', (req,res) => {
     .catch( err => {
       res.render('blog-page', getContext("Josh's Blog", req, {error: err}));
     });
-});
+};
 
-postsController.get('/:slug', (req,res) => {
+export const post = (req, res) => {
   Post.where('slug',req.params.slug).fetch({withRelated:['coverPhoto']})
     .then( post => {
       post = post.toJSON();
@@ -47,6 +44,10 @@ postsController.get('/:slug', (req,res) => {
       console.error(err);
       res.render('post', getContext("Error", req, {error: err}));
     });
-});
+};
 
-export default postsController;
+export const addPost = (req, res) => {
+  // Break file into frontmatter and markdown
+  // Process frontmatter
+  // Save post
+}
