@@ -4,7 +4,7 @@ import { getContext, getSlug } from '../lib/helpers';
 import PostParser from '../lib/post-parser';
 
 export const index = (req, res) => {
-  Post.fetchAll()
+  Post.query('orderBy','post_date','desc').fetchAll()
     .then( posts => {
       posts = posts.toJSON();
 

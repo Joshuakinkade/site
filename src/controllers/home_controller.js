@@ -34,8 +34,6 @@ export const index = (req,res) => {
         return post;
       });
 
-      console.log(posts);
-
       const recents = combineRecents(albums,posts).slice(0,RECENT_POST_COUNT);
 
       res.render('home',getContext('Home', req, {recents}));
