@@ -58,14 +58,19 @@
   .post {
     display: flex;
     flex-direction: row;
+    margin-bottom: 1em;
 
     header h2 {
       margin-bottom: .25em;
     }
 
     .cover-photo {
-      width: 512px;
+      flex: 1;
       margin-right: 1em;
+    }
+
+    .text {
+      flex: 2;
     }
   }
 }
