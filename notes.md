@@ -4,8 +4,7 @@
 
 - !!! consolidate page headers
 - !! clean up blog post design
-- !!! clean up blog page design
-- ! create global typography rules
+- ! create global typography rules  
 - ! visibily differentiate between post and gallery on recent posts
 - !! optimize pages for Facebook
 - !! add accesibility attributes

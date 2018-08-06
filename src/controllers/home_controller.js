@@ -1,5 +1,6 @@
 import {Album,Post} from '../models/bookshelf';
 import {combineRecents, getContext} from '../lib/helpers';
+import {addCoverPhoto, addCoverPhotoAlbum} from './posts_controller';
 
 export const index = (req,res) => {
   const RECENT_POST_COUNT = 3;
@@ -14,7 +15,12 @@ export const index = (req,res) => {
   queries.push(Post
     .query('orderBy','post_date','desc')
     .query('limit',RECENT_POST_COUNT)
-    .fetchAll());
+    .fetchAll().then( posts => {
+      posts = posts.toJSON();
+      return Promise.all(posts.map( post => {
+        return addCoverPhoto(post).then( post => addCoverPhotoAlbum(post));
+      }));
+    }));
 
   Promise.all(queries)
     .then( ([albums,posts]) => {
@@ -23,10 +29,12 @@ export const index = (req,res) => {
         return album;
       });
 
-      posts = posts.toJSON().map( post => {
+      posts = posts.map( post => {
         post.type = 'Post';
         return post;
       });
+
+      console.log(posts);
 
       const recents = combineRecents(albums,posts).slice(0,RECENT_POST_COUNT);
 
@@ -34,7 +42,7 @@ export const index = (req,res) => {
     })
     .catch( err => {
       console.error(err);
-      res.render('error-page', getContext('Home', req, {error: err.message}));
+      res.render('errors/system-error', getContext('Home', req, {error: err.message}));
     });
 };
 

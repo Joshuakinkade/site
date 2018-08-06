@@ -75,7 +75,7 @@ export const addPost = (req, res) => {
   }
 }
 
-function addCoverPhotoAlbum(post) {
+export function addCoverPhotoAlbum(post) {
   if (post.coverPhoto) {
     return Album.where('id',post.coverPhoto.album).fetch()
     .then( album => {
@@ -87,7 +87,7 @@ function addCoverPhotoAlbum(post) {
   }
 }
 
-function addCoverPhoto(post) {
+export function addCoverPhoto(post) {
   if (post.cover_photo) {
     return Photo.where('id',post.cover_photo).fetch()
       .then( photo => {

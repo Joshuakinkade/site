@@ -42,7 +42,7 @@
                   <div class="photo-outer mid">
                     <div class="photo-inner">
                       {?coverPhoto}
-                        <img src="/pictures/{slug}/thumb/{coverPhoto.filename}"/>
+                        <img src="/pictures/{coverPhoto.album.slug}/thumb/{coverPhoto.filename}"/>
                       {:else}
                         <img src="/images/no-photo.jpg"/>
                       {/coverPhoto}
