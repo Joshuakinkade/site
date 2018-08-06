@@ -15,13 +15,9 @@ passport.use(new BasicStrategy( (username, password, done) => {
 
 import Logger from './lib/logger';
 
-import db from './models/db';
-
 import routes from './routes';
 
 import {formatDate, formatDateTime, snippet, md} from './lib/dust-filters';
-
-db.init();
 
 const logger = new Logger({
   logLevel: process.env.NODE_ENV == 'development' ? Logger.DEBUG : Logger.INFO 

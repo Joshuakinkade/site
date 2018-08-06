@@ -1,30 +1,29 @@
 import {DateTime} from 'luxon';
-import {Post, Album} from '../models/bookshelf';
+import {Post, Album, Photo} from '../models/bookshelf';
 import { getContext, getSlug } from '../lib/helpers';
 import PostParser from '../lib/post-parser';
 
 export const index = (req, res) => {
-  Post.fetchAll({withRelated: ['coverPhoto']})
+  Post.fetchAll()
     .then( posts => {
       posts = posts.toJSON();
 
-      // Get the album for the cover photo for each post
+      // Get the cover photo and it's album for each post
       const requests = posts.map( post => {
-        return Album.where('id',post.coverPhoto.album).fetch()
-          .then( album => {
-            post.coverPhoto.album = album.toJSON();
-            return post;
-          });
+        return addCoverPhoto(post).then( post => addCoverPhotoAlbum(post));
       });
  
-      Promise.all(requests)
+      return Promise.all(requests)
         .then( posts => {
-          res.render('blog-page', getContext("Josh's Blog", req, {posts}));
+          return res.render('blog-page', getContext("Josh's Blog", req, {posts}));
+        })
+        .catch( err => {
+          console.error(err);
+          return res.render('post', getContext("Error", req, {error: err}));
         });
-
-      return null;
     })
     .catch( err => {
+      console.error(err);
       res.render('blog-page', getContext("Josh's Blog", req, {error: err}));
     });
 };
@@ -33,14 +32,10 @@ export const post = (req, res) => {
   Post.where('slug',req.params.slug).fetch({withRelated:['coverPhoto']})
     .then( post => {
       post = post.toJSON();
-      
-      // Get the album for the cover photo
-      return Album.where('id',post.coverPhoto.album).fetch()
-        .then( album => {
-          post.coverPhoto.album = album.toJSON();
-          res.render('post', getContext(post.title, req, {post}));
-          return null;
-        });
+      return addCoverPhotoAlbum(post);
+    })
+    .then( post => {
+      res.render('post', getContext(post.title, req, {post}));
     })
     .catch( err => {
       console.error(err);
@@ -77,5 +72,29 @@ export const addPost = (req, res) => {
       })
   } catch(err) {
     res.status(400).send(err.message);
+  }
+}
+
+function addCoverPhotoAlbum(post) {
+  if (post.coverPhoto) {
+    return Album.where('id',post.coverPhoto.album).fetch()
+    .then( album => {
+      post.coverPhoto.album = album.toJSON();
+      return post;
+    });
+  } else {
+    return Promise.resolve(post);
+  }
+}
+
+function addCoverPhoto(post) {
+  if (post.cover_photo) {
+    return Photo.where('id',post.cover_photo).fetch()
+      .then( photo => {
+        post.coverPhoto = photo.toJSON();
+        return post;
+      });
+  } else {
+    return Promise.resolve(post);
   }
 }
