@@ -1,0 +1,11 @@
+<header class="page-header">
+  {?coverPhoto}
+  <div class="photo-block">
+    <div class="photo-outer short">
+      <div class="photo-inner">
+        <img src="/pictures/{album.slug}/mid/{album.coverPhoto.filename}"/>
+      </div>
+    </div>
+  </div>
+  {/coverPhoto}
+</header>

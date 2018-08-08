@@ -13,32 +13,7 @@
 {/pageScripts}
 
 {<content}
-  {?album.coverPhoto}
-  <header class="gallery-header">
-    <div class="photo-block">
-      <div class="photo-outer short">
-        <div class="photo-inner">
-          <img src="/pictures/{album.slug}/mid/{album.coverPhoto.filename}"/>
-        </div>
-      </div>
-      <div class="text">
-        <h1>{album.name}</h1>
-        <div class="details">
-          <p>{album.start_date|formatDate} to {album.end_date|formatDate}</p>
-          {?album.description}<p>{album.description}</p>{/album.description}
-        </div>
-      </div>
-    </div>
-  </header>
-  {:else}
-    <header class="page-header">
-      <h1>{album.name}</h1>
-      <p class="subtitle">{album.start_date|formatDate} to {album.end_date|formatDate}</p>
-      {?album.description}
-        <p class="subtitle">{album.description}</p>
-      {/album.description}
-    </header>
-  {/album.coverPhoto}
+  {>"partials/page-header" headline=album.description metadata=album.dateRange coverPhoto=album.coverPhoto/}
   <main>
     <div class="photo-grid">
       {#photos album_name=album.slug}

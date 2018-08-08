@@ -1,4 +1,3 @@
-import multer from 'multer';
 import {DateTime} from 'luxon';
 
 import {Album, Photo} from '../models/bookshelf';
@@ -26,6 +25,9 @@ export const album = (req,res) => {
   Album.where('slug',req.params.albumSlug).fetch({withRelated:['coverPhoto']})
     .then( album => {
       album = album.toJSON();
+      album.dateRange = album.start_date.toLocaleString(DateTime.DATE_SHORT) + ' - ' +
+                        album.end_date.toLocaleString(DateTime.DATE_SHORT);
+      console.log(album);
       Photo.where('album',album.id).orderBy('date_taken').fetchAll()
         .then( photos => {       
           photos = photos.toJSON();   
