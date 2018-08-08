@@ -18,7 +18,9 @@
         <div class="post-summary">
           {@eq key=type value="Album"}
             <a href="/pictures/{slug}">
-              <h3>{name}</h3>
+              <h3>
+                {name}              
+              </h3>
               <div class="sample">
                 <div class="photo-block">
                   <div class="photo-outer mid">
@@ -30,13 +32,18 @@
                       {/coverPhoto}
                     </div>
                   </div>
+                  <div class="text">
+                    <p><span class="badge badge-light">Photo Album</span></p>
+                  </div>
                 </div>
               </div>
             </a>
           {/eq}
           {@eq key=type value="Post"}
             <a href="/blog/{slug}">
-              <h3>{title}</h3>
+              <h3>
+                {title}
+              </h3>
               <div class="sample">
                 <div class="photo-block">
                   <div class="photo-outer mid">
@@ -47,6 +54,9 @@
                         <img src="/images/no-photo.jpg"/>
                       {/coverPhoto}
                     </div>
+                  </div>
+                  <div class="text">
+                    <p><span class="badge badge-light">Blog Post</span></p>
                   </div>
                 </div>
               </div>
