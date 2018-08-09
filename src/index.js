@@ -25,7 +25,7 @@ const logger = new Logger({
 
 const app = express();
 
-app.set('site-name', 'joshuakinkade.me');
+app.set('site-name', process.env.SITE_NAME);
 
 app.disable('x-powered-by');
 

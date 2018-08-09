@@ -3,10 +3,8 @@
 ## Todo
 
 - !!! consolidate page headers
-- !! clean up blog post design
-- ! create global typography rules  
+- ! create global typography rules
 - !! optimize pages for Facebook
-- !! add accesibility attributes
 - !!! publish site
   - ! check against Google PageSpeed
 
