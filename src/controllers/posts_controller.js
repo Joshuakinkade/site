@@ -1,4 +1,5 @@
 import {DateTime} from 'luxon';
+import logger from '../logger';
 import {Post, Album, Photo} from '../models/bookshelf';
 import { getContext, getSlug } from '../lib/helpers';
 import PostParser from '../lib/post-parser';
@@ -23,8 +24,8 @@ export const index = (req, res) => {
         });
     })
     .catch( err => {
-      console.error(err);
-      res.render('blog-page', getContext("Josh's Blog", req, {error: err}));
+      logger.error(err);
+      res.render('errors/system-error');
     });
 };
 
@@ -38,8 +39,8 @@ export const post = (req, res) => {
       res.render('post', getContext(post.title, req, {post}));
     })
     .catch( err => {
-      console.error(err);
-      res.render('post', getContext("Error", req, {error: err}));
+      logger.error(err);
+      res.render('errors/system-error');
     });
 };
 
@@ -71,6 +72,7 @@ export const addPost = (req, res) => {
         if (err.code == 'ER_DUP_ENTRY') {
           return res.status(400).send('Post title is taken. Choose another one');
         }
+        logger.error(err.message);
         return res.status(500).send(err.message);
       })
   } catch(err) {

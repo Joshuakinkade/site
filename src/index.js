@@ -4,7 +4,11 @@ import consolidate from 'consolidate';
 import dust from 'dustjs-linkedin';
 import passport from 'passport';
 import {BasicStrategy} from 'passport-http';
+import routes from './routes';
+import logger from './logger';
+import {formatDate, formatDateTime, snippet, md} from './lib/dust-filters';
 
+/* Configure Authentication */
 passport.use(new BasicStrategy( (username, password, done) => {
   if (username === process.env.API_USER && password === process.env.API_PASSWORD) {
     return done(null,{username: process.env.API_USER});
@@ -13,16 +17,7 @@ passport.use(new BasicStrategy( (username, password, done) => {
   }
 }));
 
-import Logger from './lib/logger';
-
-import routes from './routes';
-
-import {formatDate, formatDateTime, snippet, md} from './lib/dust-filters';
-
-const logger = new Logger({
-  logLevel: process.env.NODE_ENV == 'development' ? Logger.DEBUG : Logger.INFO 
-});
-
+/* Configure app */
 const app = express();
 
 app.set('site-name', process.env.SITE_NAME);
@@ -39,14 +34,12 @@ app.engine('dust', consolidate.dust);
 app.set('view engine', 'dust');
 app.set('views', './src/views');
 
-/* * Serve Static Files */
+/* Serve Static Files */
 app.use(express.static('./public'));
-
-// TODO: auto-compile scss files in dev
-// TODO: auto-compile client-side js in dev
 
 app.use(compression());
 
+/* Log Request URLs */
 app.use((req,res,next) => {
   logger.info(req.method + ' ' + req.originalUrl);
   next();

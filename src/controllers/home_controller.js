@@ -1,4 +1,5 @@
 import {Album,Post} from '../models/bookshelf';
+import logger from '../logger';
 import {combineRecents, getContext} from '../lib/helpers';
 import {addCoverPhoto, addCoverPhotoAlbum} from './posts_controller';
 
@@ -39,8 +40,8 @@ export const index = (req,res) => {
       res.render('home',getContext('Home', req, {recents}));
     })
     .catch( err => {
-      console.error(err);
-      res.render('errors/system-error', getContext('Home', req, {error: err.message}));
+      logger.error(err.message);
+      res.render('errors/system-error');
     });
 };
 
@@ -58,5 +59,8 @@ export const sitemap = (req,res) => {
         .set('Content-Type','text/xml')
         .render('sitemap',{baseUrl:'https://joshuakinkade.me',albums,posts});
     })
+    .catch( err => {
+      res.status(500).send('Internal Server Error');
+    });
 
 };

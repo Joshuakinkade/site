@@ -1,6 +1,6 @@
-import multer from 'multer';
 import {DateTime} from 'luxon';
 
+import logger from '../logger';
 import {Album, Photo} from '../models/bookshelf';
 import {getSlug, getContext} from '../lib/helpers';
 import Photos from '../lib/photos';
@@ -17,8 +17,8 @@ export const index = (req,res) => {
       return null;
     })
     .catch( err => {
-      console.log(err);
-      res.render('photos', getContext("Josh's Picutres", req, {error: err}));
+      logger.error(err);
+      res.render('errors/system-error');
     });
 };
 
@@ -31,7 +31,11 @@ export const album = (req,res) => {
           photos = photos.toJSON();   
           res.render('album-view', getContext(album.name, req, {album,photos}));
         });
-    });
+    })
+    .catch( err => {
+      logger.error(err);
+      res.render('errors/system-error');
+    })
 };
 
 export const photo = (req,res) => {
@@ -42,7 +46,7 @@ export const photo = (req,res) => {
       res.send(photo);
     })
     .catch( err => {
-      console.error(err);
+      logger.error(err);
       res.status(404).send('Not Found');
     });
 };
@@ -65,8 +69,8 @@ export const createAlbum = (req,res) => {
         res.send('ok');
       })
       .catch( err => {
-        console.error(err);
-        res.send(err.message);
+        logger.error(err);
+        res.status(500).send(err.message);
       })
 };  
 
@@ -98,7 +102,7 @@ export const addPhoto = (req,res) => {
       res.send("ok");
     })
     .catch(err => {
-      console.log(err);
-      res.send(err.message);
+      logger.log(err);
+      res.status(500).send(err.message);
     });
 };
