@@ -6,10 +6,12 @@
 
 {<content}
   <div class="scripture">
-    <blockquote class="clearfix">
-      <p>{scripture.text}</p>
-      <cite>{scripture.reference}</cite>
-    </blockquote>
+    {?scripture}
+      <blockquote class="clearfix">
+        <p>{scripture.text}</p>
+        <cite>{scripture.reference}</cite>
+      </blockquote>
+    {/scripture}
   </div>
   <div class="recent-posts">
     <h2>Recent Posts</h2>

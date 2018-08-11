@@ -42,7 +42,9 @@ export const index = (req,res) => {
 
       const recents = combineRecents(albums,posts).slice(0,RECENT_POST_COUNT);
 
-      res.render('home',getContext('Home', req, {recents, scripture: scripture.toJSON()}));
+      scripture = scripture ? scripture.toJSON()  : null;
+
+      res.render('home',getContext('Home', req, {recents, scripture}));
     })
     .catch( err => {
       logger.error(err.message);
