@@ -49,7 +49,7 @@ app.use((req,res,next) => {
 app.use('/',routes);
 
 app.use((req,res) => {
-  res.render('errors/not-found',{pageTitle:'Not Found'});
+  res.status(404).render('errors/not-found',{pageTitle:'Not Found'});
 });
 
 /* Start Server */
