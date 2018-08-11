@@ -7,8 +7,8 @@
 {<content}
   <div class="scripture">
     <blockquote class="clearfix">
-      <p>But if we walk in the light as He is in the light, he have fellowship with one another, and the blood of Jesus Christ His Son cleanses us from all sin.</p>
-      <cite>1 John 1:7</cite>
+      <p>{scripture.text}</p>
+      <cite>{scripture.reference}</cite>
     </blockquote>
   </div>
   <div class="recent-posts">

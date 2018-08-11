@@ -17,7 +17,6 @@ const db = knex({
   }
 });
 
-
 const models = bookshelf(db);
 
 export const Album = models.Model.extend({
@@ -61,4 +60,8 @@ export const Post = models.Model.extend({
     attributes.post_date = attributes.post_date.toJSDate();
     return attributes;
   }
+});
+
+export const Scripture = models.Model.extend({
+  tableName: 'scriptures'
 });

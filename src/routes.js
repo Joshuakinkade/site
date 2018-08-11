@@ -5,6 +5,7 @@ import multer from 'multer';
 import * as home from './controllers/home_controller';
 import * as photos from './controllers/photos_controller';
 import * as posts from './controllers/posts_controller';
+import * as scripture from './controllers/scripture_controller';
 
 const storage = multer.memoryStorage();
 const upload = multer({buffer: storage});
@@ -38,5 +39,11 @@ routes.post('/blog',
   passport.authenticate('basic', {session:false}),
   upload.single('post'),
   posts.addPost);
+
+// Scripture Routes
+routes.post('/scripture', 
+  passport.authenticate('basic', {session: false}), 
+  upload.single(), 
+  scripture.postScripture);
 
 export default routes;

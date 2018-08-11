@@ -1,4 +1,4 @@
-import {Album,Post} from '../models/bookshelf';
+import {Album, Post, Scripture} from '../models/bookshelf';
 import logger from '../logger';
 import {combineRecents, getContext} from '../lib/helpers';
 import {addCoverPhoto, addCoverPhotoAlbum} from './posts_controller';
@@ -23,8 +23,13 @@ export const index = (req,res) => {
       }));
     }));
 
+  queries.push(Scripture
+    .query('orderBy','created_at','desc')
+    .query('limit', 1)
+    .fetch());
+
   Promise.all(queries)
-    .then( ([albums,posts]) => {
+    .then( ([albums,posts,scripture]) => {
       albums = albums.toJSON().map( album => {
         album.type = 'Album';
         return album;
@@ -37,7 +42,7 @@ export const index = (req,res) => {
 
       const recents = combineRecents(albums,posts).slice(0,RECENT_POST_COUNT);
 
-      res.render('home',getContext('Home', req, {recents}));
+      res.render('home',getContext('Home', req, {recents, scripture: scripture.toJSON()}));
     })
     .catch( err => {
       logger.error(err.message);
