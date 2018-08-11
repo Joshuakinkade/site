@@ -72,7 +72,35 @@ export const createAlbum = (req,res) => {
         logger.error(err);
         res.status(500).send(err.message);
       })
-};  
+};
+
+export const updateAlbum = (req, res) => {
+  Album.where('id', req.params.albumId).fetch()
+    .then( album => {
+      if (!album) {
+        return res.status(404).send(`Album with id ${req.params.albumId} does not exist`);
+      }
+
+      const newData = Object.assign({},req.body);
+
+      // Copy properties from the request body to the album
+      for (const key in newData) {
+        if (newData.hasOwnProperty(key)) {
+          const value = newData[key];
+          album.set(key,value);
+        }
+      }
+
+      return album.save()
+        .then( () => {
+          res.send('ok');
+        });
+    })
+    .catch( err => {
+      logger.error(err.message);
+      res.status(500).send(err.message);
+    })
+}
 
 export const addPhoto = (req,res) => {
   // Create a url friendly file name

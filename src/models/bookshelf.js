@@ -29,6 +29,17 @@ export const Album = models.Model.extend({
     response.end_date = DateTime.fromJSDate(response.end_date);
 
     return response;
+  },
+  format: function(attributes) {
+    if (attributes.start_date) {
+      attributes.start_date = attributes.start_date.toJSDate();
+    }
+
+    if (attributes.end_date) {
+      attributes.end_date = attributes.end_date.toJSDate();
+    }
+    
+    return attributes;
   }
 });
 

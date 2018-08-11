@@ -3,7 +3,6 @@
 ## Todo
 
 - !!! consolidate page headers
-- ! create global typography rules
 - !! optimize pages for Facebook
 - !!! publish site
   - ! check against Google PageSpeed

@@ -26,6 +26,11 @@ routes.post('/pictures',
   upload.single(), // Parse request body
   photos.createAlbum);
 
+routes.put('/pictures/:albumId',
+  passport.authenticate('basic', {session:false}),
+  upload.single(),
+  photos.updateAlbum);
+
 routes.post('/pictures/:albumId',
   passport.authenticate('basic', {session:false}), // Authenticate request
   upload.single('photo'), // Parse request body
