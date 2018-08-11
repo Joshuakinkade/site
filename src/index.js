@@ -53,6 +53,12 @@ app.use((req,res) => {
 });
 
 /* Start Server */
-app.listen(process.env.PORT, (err) => {
-  logger.info(`Server running on port ${process.env.PORT}`);
+const port = process.env.PORT;
+const host = process.env.HOST || '0.0.0.0';
+app.listen(port, host, (err) => {
+  if (err) {
+    logger.error(err.message);
+  } else {
+    logger.info(`Server running at ${host}:${port}`);
+  }
 });
