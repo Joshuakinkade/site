@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watch",
-    "sass": "sass --watch .\\src\\sass\\:.\\public\\css\\",
-    "start": "node .\\src\\bootstrap.js"
+    "sass": "sass --watch ./src/sass/:./public/css/",
+    "start": "node ./src/bootstrap.js"
   },
   "author": "",
   "license": "ISC",
