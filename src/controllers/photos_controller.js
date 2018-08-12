@@ -73,8 +73,8 @@ export const createAlbum = (req,res) => {
     });
 
     album.save()
-      .then( () => {
-        res.send('ok');
+      .then( (model) => {
+        res.send(`created album with id: ${model.id}`);
       })
       .catch( err => {
         if (err.code === 'ER_DUP_ENTRY') {
@@ -110,7 +110,7 @@ export const updateAlbum = (req, res) => {
     .catch( err => {
       logger.error(err.message);
       res.status(500).send(err.message);
-    })
+    });
 }
 
 export const addPhoto = (req,res) => {
@@ -137,8 +137,8 @@ export const addPhoto = (req,res) => {
 
       return photo.save();
     })
-    .then( () => {
-      res.send("ok");
+    .then( (model) => {
+      res.send(`added photo with id: ${model.id}`);
     })
     .catch(err => {
       logger.log(err);
