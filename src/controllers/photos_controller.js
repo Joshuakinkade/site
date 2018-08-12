@@ -26,7 +26,7 @@ export const album = (req,res) => {
   Album.where('slug',req.params.albumSlug).fetch({withRelated:['coverPhoto']})
     .then( album => {
       album = album.toJSON();
-      Photo.where('album',album.id).orderBy('date_taken').fetchAll()
+      return Photo.where('album',album.id).orderBy('date_taken').fetchAll()
         .then( photos => {       
           photos = photos.toJSON();   
           res.render('album-view', getContext(album.name, req, {album,photos}));
@@ -56,11 +56,19 @@ export const createAlbum = (req,res) => {
     const start =  DateTime.fromISO(req.body.startDate);
     const end = DateTime.fromISO(req.body.endDate);
 
+    if (!start.isValid) {
+      return res.status(400).send('Start Date not valid');
+    }
+
+    if (!end.isValid) {
+      return res.status(400).send('End Date not valid');
+    }
+
     const album = new Album({
       name: req.body.name,
       slug: albumSlug,
-      start_date: start.toJSDate(),
-      end_date: end.toJSDate(),
+      start_date: start,
+      end_date: end,
       description: req.body.description || null
     });
 
@@ -69,7 +77,10 @@ export const createAlbum = (req,res) => {
         res.send('ok');
       })
       .catch( err => {
-        logger.error(err);
+        if (err.code === 'ER_DUP_ENTRY') {
+          return res.status(400).send('Album name is taken. Choose another.');
+        }
+        logger.error(err.message);
         res.status(500).send(err.message);
       })
 };
