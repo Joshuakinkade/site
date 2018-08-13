@@ -119,6 +119,10 @@ export const addPhoto = (req,res) => {
 
   Album.where('id',req.params.albumId).fetch() // Get the album to build the file path
     .then( album => {
+      if (!album) {
+        throw new Error('Album not found');
+      }
+      
       const slug = album.get('slug');
       // Save the image file
       return photos.addPhoto(slug,fileName,req.file.buffer);
@@ -141,6 +145,9 @@ export const addPhoto = (req,res) => {
       res.send(`added photo with id: ${model.id}`);
     })
     .catch(err => {
+      if (err.message = 'Album not found') {
+        return res.status(404).send('Album not found');
+      }
       logger.log(err);
       res.status(500).send(err.message);
     });
