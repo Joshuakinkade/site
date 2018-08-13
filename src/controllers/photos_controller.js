@@ -145,7 +145,7 @@ export const addPhoto = (req,res) => {
       res.send(`added photo with id: ${model.id}`);
     })
     .catch(err => {
-      if (err.message = 'Album not found') {
+      if (err.message == 'Album not found') {
         return res.status(404).send('Album not found');
       }
       logger.log(err);
