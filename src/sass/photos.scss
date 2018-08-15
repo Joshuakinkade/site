@@ -1,10 +1,10 @@
+@import "variables";
 @import "components/page-header";
 @import "components/photo-block";
 
 .photo-grid {
   line-height: 0;
   padding-bottom: 1em;
-  padding-top: .5em;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: .5em;
@@ -17,11 +17,17 @@
   }
 
   h2 {
-    font-size: 16px;
+    font-size: $font-size-3;
+    font-weight: 100;
     letter-spacing: .1em;
     font-weight: 100;
     font-family: sans-serif;
     margin: 0;
+  }
+
+  p {
+    font-size: $font-size-1;
+    margin: .5em 0;
   }
 }
 
@@ -29,18 +35,20 @@
   .tile {
     .text {
       text-align: left;
+
+      color: whitesmoke;
     }
   }
 }
 
-@media (min-width: 768px) {
-  .photo-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
+// @media (min-width: 768px) {
+//   .photo-grid {
+//     grid-template-columns: repeat(4, 1fr);
+//   }
+// }
 
-@media (min-width: 1200px) {
-  .photo-grid {
-    grid-template-columns:  repeat(8, 1fr);
-  }
-}
+// @media (min-width: 1200px) {
+//   .photo-grid {
+//     grid-template-columns:  repeat(8, 1fr);
+//   }
+// }

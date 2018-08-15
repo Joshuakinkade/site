@@ -25,9 +25,9 @@ body {
   background-color: darkred;
 }
 
-// @media (min-width: 1200px) {
-//   .wrapper {
-//     width: 768px;
-//     margin: 0 auto;
-//   }
-// }
+@media (min-width: 1200px) {
+  .wrapper {
+    width: 1024px;
+    margin: 0 auto;
+  }
+}

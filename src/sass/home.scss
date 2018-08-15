@@ -128,6 +128,12 @@
   }
 }
 
+.sample .photo-block .text {
+  p {
+    margin: .25em;
+  }
+}
+
 @media (min-width: 1200px) {
   .scripture {
     font-size: $font-size-3;

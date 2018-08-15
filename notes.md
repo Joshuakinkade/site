@@ -44,4 +44,9 @@
 
 #### UI Components
 - Photo Container: displays the selected picture
-- Header: displays info close butto
+- Header: displays info close button
+
+#### Process for uploading an album
+1. Choose pictures and export jpegs to temporary directory
+2. Create Album yaml file
+3. Run bulk upload script

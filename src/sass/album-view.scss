@@ -5,6 +5,7 @@
 .gallery-header {
   .text {
     padding: 1em;
+    color: whitesmoke;
   }
 
   h1 {
@@ -39,8 +40,8 @@
   }
 }
 
-@media (min-width: 1200px) {
-  .photo-grid {
-    grid-template-columns:  repeat(8, 1fr);
-  }
-}
+// @media (min-width: 1200px) {
+//   .photo-grid {
+//     grid-template-columns:  repeat(4, 1fr);
+//   }
+// }

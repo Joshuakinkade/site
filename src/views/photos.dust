@@ -14,7 +14,7 @@
         <div class="tile">
           <a href="/pictures/{slug}">
             <div class="photo-block">
-              <div class="photo-outer">
+              <div class="photo-outer mid">
                 <div class="photo-inner">
                   {?coverPhoto}
                     <img src="/pictures/{slug}/thumb/{coverPhoto.filename}"/>
@@ -25,6 +25,7 @@
               </div>
               <div class="text">
                 <h2>{name}</h2>
+                <p>{start_date|formatDate} to {end_date|formatDate}</p>
               </div>
             </div>
           </a>
