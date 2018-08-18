@@ -1,34 +1,22 @@
+@import "variables";
 @import "components/photo-block";
 @import "components/page-header";
+@import "components/gallery-header";
 
-// Components
-.gallery-header {
-  .text {
-    padding: 1em;
-    color: whitesmoke;
-  }
+.headline {
+  padding: 0 1em;
 
-  h1 {
-    border-bottom: solid gray 1px;
-    font-weight: 100;
-    margin: 0;
-  }
-
-  .details {
-    padding-left: .5em;
-
-    p {
-      margin: 0;
-      color: lightgray;
-    }
+  p {
+    margin: 1em 0;
+    font-family: serif;
+    font-size: $font-size-2;
+    font-style: italic;
   }
 }
 
-// Layout
 .photo-grid {
   line-height: 0;
   padding-bottom: 1em;
-  padding-top: .5em;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: .5em;
