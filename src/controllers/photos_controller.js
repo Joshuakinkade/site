@@ -43,6 +43,7 @@ export const photo = (req,res) => {
   photos.getPhoto(req.params.albumSlug,req.params.filename,req.params.size)
     .then( photo => {
       res.set('Content-Type','image/jpeg');
+      res.set('Cache-Control', 'max-age=' + 60 * 60 * 24 * 7);
       res.send(photo);
     })
     .catch( err => {

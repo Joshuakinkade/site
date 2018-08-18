@@ -4,8 +4,7 @@
 
 - !!! consolidate page headers
 - !! optimize pages for Facebook
-- !!! publish site
-  - ! check against Google PageSpeed
+- !!! setup ssl
 
 ## Context
 
@@ -45,6 +44,12 @@
 #### UI Components
 - Photo Container: displays the selected picture
 - Header: displays info close button
+- Gallery Header: displays a header with a large background image, a title, subtitle, and some other info
+  - params
+    - bgImage?
+    - title
+    - subTitle?
+    - extra?
 
 #### Process for uploading an album
 1. Choose pictures and export jpegs to temporary directory
