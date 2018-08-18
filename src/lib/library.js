@@ -19,19 +19,24 @@ export default class Library {
     return new Promise( (resolve, reject) => {
       fs.readFile(path.join(this.rootDir,folder,name), (err, data) => {
         if (err) {
-          reject(err);
+          if (err.code === 'ENOENT') {
+            resolve(null);
+          } else {
+            reject(err);
+          }
         } else {
           resolve(data);
         }
-      })
+      });
     });
   }
 
   /**
    * Write a file to a folder
-   * @param {*} folder 
-   * @param {*} name 
-   * @param {*} data 
+   * @param {String} folder the folder to write in
+   * @param {String} name the file to write to
+   * @param {Buffer} data the data to write
+   * @returns {Promise}
    */
   writeFile(folder, name, data) {
     const folderPath = path.join(this.rootDir,folder);
@@ -48,9 +53,9 @@ export default class Library {
       });
   }
 
-  _doWrite(filePath, data) {
+  createFolder(folderPath) {
     return new Promise( (resolve, reject) => {
-      fs.writeFile(filePath, data, err => {
+      fs.mkdir(folderPath, err => {
         if (err) {
           reject(err);
         } else {
@@ -60,9 +65,9 @@ export default class Library {
     })
   }
 
-  createFolder(folderPath) {
+  _doWrite(filePath, data) {
     return new Promise( (resolve, reject) => {
-      fs.mkdir(folderPath, err => {
+      fs.writeFile(filePath, data, err => {
         if (err) {
           reject(err);
         } else {

@@ -34,18 +34,48 @@ export default class PhotoStorage {
   }
 
   getPhoto(folder, name, size) {
-    // TODO: If size isn't full, check for existing image with requested size.
-    return this.library.readFile(folder, name)
+    if (size !== 'full') {
+      // Try to get resized image
+      return this.library.readFile(`${folder}/${size}`, name)
+        .then( photoData => {
+          if (photoData) {
+            return photoData;
+          } else {
+            // Create the resized image and return it
+            return this._resizePhoto(folder, name, size);
+          }
+        });
+    } else {
+      return this.library.readFile(folder, name)
       .then( photoData => {
+        return photoData;
+      });
+    }
+  }
+
+  _resizePhoto(folder, name, size) {
+    return this.library.readFile(folder, name)
+    .then( photoData => {
+      if (photoData) {
         let photo = sharp(photoData).withMetadata();
         if (size === 'thumb') {
           photo = photo.resize(512,null).jpeg({quality:50});
-          // TODO: Save the thumbnail after creating it.
         } else if (size === 'mid') {
           photo = photo.resize(1366,null).jpeg({quality: 75});
         }
+        return photo.toBuffer()
+          .then( (data) => {
+            this.library.writeFile(`${folder}/${size}`, name, data)
+            .catch( err => {
+              console.error(err.message);
+              return null;
+            });
 
-        return photo.toBuffer();
-      });
+            return data;
+          });
+      } else {
+        return null;
+      }
+    });
   }
 }

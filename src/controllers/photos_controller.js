@@ -42,13 +42,16 @@ export const photo = (req,res) => {
   // Load image file from storage`
   photos.getPhoto(req.params.albumSlug,req.params.filename,req.params.size)
     .then( photo => {
+      if (!photo) {
+        res.status(404).send('Not Found');
+      }
       res.set('Content-Type','image/jpeg');
       res.set('Cache-Control', 'max-age=' + 60 * 60 * 24 * 7);
       res.send(photo);
     })
     .catch( err => {
-      logger.error(err);
-      res.status(404).send('Not Found');
+      logger.error(err.message);
+      res.status(500).send('Internal Server Error');
     });
 };
 

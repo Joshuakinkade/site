@@ -19,7 +19,7 @@ export const index = (req, res) => {
           return res.render('blog-page', getContext("Josh's Blog", req, {posts}));
         })
         .catch( err => {
-          console.error(err);
+          logger.error(err);
           return res.render('post', getContext("Error", req, {error: err}));
         });
     })
