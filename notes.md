@@ -2,9 +2,11 @@
 
 ## Todo
 
-- !!! consolidate page headers
-- !! optimize pages for Facebook
-- !!! setup ssl
+- fix mobile album links
+- finish gallery header
+- add ssl
+- add facebook tags
+- bulk album post route
 
 ## Context
 
@@ -55,3 +57,14 @@
 1. Choose pictures and export jpegs to temporary directory
 2. Create Album yaml file
 3. Run bulk upload script
+
+#### Album Metadata YAML format
+```yaml
+name: enter unique name here
+startDate: date that album begins
+endDate: date that album ends
+photos:
+  -
+    filename: name of the image file
+    caption: description of the picture
+```
