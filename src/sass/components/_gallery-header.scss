@@ -1,4 +1,4 @@
-@import "./photo";
+@import "photo";
 
 .gallery-header {
   position: relative;
@@ -20,10 +20,9 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 0 1em 1em 1em;
+    padding: .25em .5em;
     color: whitesmoke;
     padding-top: 1em;
-    
 
     .title {
       display: flex;
@@ -36,14 +35,15 @@
   }
 
   h1 {
-    font-size: $font-size-5;
-    line-height: 1em;
+    font-size: $font-size-4;
     font-weight: 400;
     margin: 0;
   }
 
   .subtitle {
-    font-weight: 400;
+    margin-left: .1em;
+    font-weight: 200;
+    color: lightgray;
     font-size: $font-size-1;
   }
 
@@ -62,23 +62,40 @@
     min-height: $font-size-6 + $font-size-1 + $font-size-2;
 
     .text {
+      padding: 1em;
+
       .title {
-        flex-direction: row;
-        align-items: flex-end;
 
         h1 {
           font-size: $font-size-6;
+          line-height: 1em;
         }
 
         .subtitle {
-          margin-left: .5em;
-          font-size: $font-size-2;
+          font-size: $font-size-1;
+          font-style: italic;
           font-weight: 400;
         }
       }
 
       .details {
         margin: .5em .25em;
+      }
+    }
+  }
+}
+
+@media( min-width: 1024px) {
+  .gallery-header {
+    .text {
+      .title {
+        flex-direction: row;
+        align-items: flex-end;
+
+        .subtitle {
+          margin-left: 1em;
+          font-size: $font-size-2;
+        }
       }
     }
   }
