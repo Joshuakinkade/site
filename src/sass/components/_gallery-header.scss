@@ -1,0 +1,102 @@
+@import "photo";
+
+.gallery-header {
+  position: relative;
+  min-height: $font-size-5 + (2 * $font-size-1);
+
+  .background {
+    .gradient {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.75));
+    }
+  }
+
+  .text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: .25em .5em;
+    color: whitesmoke;
+    padding-top: 1em;
+
+    .title {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &.dark .text {
+    color: #222;
+  }
+
+  h1 {
+    font-size: $font-size-4;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .subtitle {
+    margin-left: .1em;
+    font-weight: 200;
+    color: lightgray;
+    font-size: $font-size-1;
+  }
+
+  .details {
+    font-weight: 200;
+    font-size: $font-size-1;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+@media( min-width: 768px) {
+  .gallery-header {
+    min-height: $font-size-6 + $font-size-1 + $font-size-2;
+
+    .text {
+      padding: 1em;
+
+      .title {
+
+        h1 {
+          font-size: $font-size-6;
+          line-height: 1em;
+        }
+
+        .subtitle {
+          font-size: $font-size-1;
+          font-style: italic;
+          font-weight: 400;
+        }
+      }
+
+      .details {
+        margin: .5em .25em;
+      }
+    }
+  }
+}
+
+@media( min-width: 1024px) {
+  .gallery-header {
+    .text {
+      .title {
+        flex-direction: row;
+        align-items: flex-end;
+
+        .subtitle {
+          margin-left: 1em;
+          font-size: $font-size-2;
+        }
+      }
+    }
+  }
+}
