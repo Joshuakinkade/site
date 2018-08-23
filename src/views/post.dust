@@ -5,10 +5,33 @@
 {/pageStyles}
 
 {<content}
-  <header class="page-header">
-    <h1>{post.title}</h1>
-  </header>
-  <main class="content">
+<header class="gallery-header {^post.coverPhoto}dark{/post.coverPhoto}">
+  {?post.coverPhoto}
+    <div class="background">
+      <div class="photo">
+        <div class="photo-outer short">
+          <div class="photo-inner">
+            <img src="/pictures/{post.coverPhoto.album.slug}/mid/{post.coverPhoto.filename}"/>
+          </div>
+        </div>
+      </div>
+      <div class="gradient">
+      </div>
+    </div>
+  {/post.coverPhoto}
+  <div class="text">
+    <div class="title">
+      <h1>{post.title}</h1>
+      <div class="subtitle">{post.post_date|formatDate}</div>
+    </div>
+  </div>
+</header>
+<main>
+  <!-- <div class="headline">
+    <p>{post.headline}</p>
+  </div> -->
+  <div class="content">
     {post.text|md|s}
-  </main>
+  </div>
+</main>
 {/content}

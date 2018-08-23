@@ -1,5 +1,20 @@
-@import "./components/page-header";
 @import "variables";
+@import "./components/gallery-header";
+
+.headline {
+  padding: 0 1em;
+
+  p {
+    margin: 1em 0;
+    font-family: serif;
+    font-size: $font-size-2;
+    font-style: italic;
+  }
+}
+
+main {
+  padding-top: 1em;
+}
 
 .content {
   p {
@@ -16,12 +31,5 @@
     width: 50%;
     float: right;
     margin: 1em;
-  }
-}
-
-@media (min-width: 1200px) {
-  .wrapper {
-    width: 1024px;
-    margin: 0 auto;
   }
 }

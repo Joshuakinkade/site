@@ -2,9 +2,8 @@
 
 ## Todo
 
-- fix mobile album links
-- finish gallery header
-- add ssl
+- add gallery header to posts
+- force traffic to https
 - add facebook tags
 - bulk album post route
 
