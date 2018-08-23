@@ -3,6 +3,7 @@
 
 // Common Stuff (colors, typography, etc)
 .scripture {
+  padding: 0 1em;
   blockquote {
     margin: 0;
     font-family: 'Merienda', cursive;
@@ -26,6 +27,8 @@
 
 .recent-posts {
   padding-bottom: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
 
   h2 {
     margin: 0;

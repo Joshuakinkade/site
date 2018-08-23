@@ -17,6 +17,8 @@ main {
 }
 
 .content {
+  padding: 0 1em;
+
   p {
     font-family: serif;
     font-size: $font-size-2;
@@ -30,6 +32,14 @@ main {
   img {
     width: 50%;
     float: right;
-    margin: 1em;
+    margin: .25em;
+  }
+}
+
+@media( min-width: 768px) {
+  .content {
+    img {
+      margin: 1em;
+    }
   }
 }

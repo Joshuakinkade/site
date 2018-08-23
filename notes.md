@@ -2,7 +2,6 @@
 
 ## Todo
 
-- add gallery header to posts
 - force traffic to https
 - add facebook tags
 - bulk album post route
