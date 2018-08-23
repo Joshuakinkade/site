@@ -6,46 +6,37 @@
   line-height: 0;
   padding-bottom: 1em;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: .5em;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 1em;
 }
 
 .tile {
   .text {
-    text-align: center;
+    text-align: left;
     padding: .5em .75em;
+    color: whitesmoke;
   }
 
   h2 {
     font-size: $font-size-3;
     font-weight: 100;
     letter-spacing: .1em;
-    font-weight: 100;
     font-family: sans-serif;
     margin: 0;
-  }
-
-  p {
-    font-size: $font-size-1;
-    margin: .5em 0;
   }
 }
 
 @media (min-width: 576px) {
-  .tile {
-    .text {
-      text-align: left;
-
-      color: whitesmoke;
-    }
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-// @media (min-width: 768px) {
-//   .photo-grid {
-//     grid-template-columns: repeat(4, 1fr);
-//   }
-// }
+@media (min-width: 768px) {
+  .photo-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
 
 // @media (min-width: 1200px) {
 //   .photo-grid {
