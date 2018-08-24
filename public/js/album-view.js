@@ -9,7 +9,9 @@ const photos = $('.photo-link')
 
     const size = $(item).attr('data-size').split('x');
 
-    return {src: $(item).attr('href'), h: size[0], w: size[1]};
+    const title = $(item).attr('data-caption') || null;
+
+    return {src: $(item).attr('href'), h: size[0], w: size[1], title};
   }).toArray();
 
 

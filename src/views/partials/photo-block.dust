@@ -1,5 +1,8 @@
 <div class="tile">
-  <a href="/pictures/{album_name}/full/{filename}" class="photo-link" data-size="{height}x{width}">
+  <a href="/pictures/{album_name}/full/{filename}" 
+     class="photo-link" 
+     data-size="{height}x{width}"
+     data-caption="{caption}">
     <div class="photo-block">
       <div class="photo-outer">
         <div class="photo-inner">
