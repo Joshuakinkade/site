@@ -17,6 +17,8 @@
 .photo-grid {
   line-height: 0;
   padding-bottom: 1em;
+  padding-right: .5em;
+  padding-left: .5em;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: .5em;
