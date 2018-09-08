@@ -27,21 +27,34 @@ routes.post('/pictures',
   photos.createAlbum);
 
 routes.put('/pictures/:albumId',
-  passport.authenticate('basic', {session:false}),
+  passport.authenticate('basic', {session: false}),
   upload.single(),
   photos.updateAlbum);
 
 routes.post('/pictures/:albumId',
-  passport.authenticate('basic', {session:false}), // Authenticate request
+  passport.authenticate('basic', {session: false}), // Authenticate request
   upload.single('photo'), // Parse request body
   photos.addPhoto);
+
+routes.put('/pictures/:albumId/:photoId',
+  passport.authenticate('basic', {session: false}),
+  upload.single(),
+  photos.updatePhotoInfo);
+
+routes.get('/api/albums',
+  passport.authenticate('basic', {session: false}),
+  photos.listAlbums);
+
+routes.get('/api/albums/:albumId',
+  passport.authenticate('basic', {session: false}),
+  photos.listPhotos);
 
 // Blog Routes
 routes.get('/blog', posts.index);
 routes.get('/blog/:slug', posts.post);
 
 routes.post('/blog', 
-  passport.authenticate('basic', {session:false}),
+  passport.authenticate('basic', {session: false}),
   upload.single('post'),
   posts.addPost);
 

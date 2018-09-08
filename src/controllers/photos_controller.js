@@ -152,7 +152,54 @@ export const addPhoto = (req,res) => {
       if (err.message == 'Album not found') {
         return res.status(404).send('Album not found');
       }
-      logger.log(err);
+      logger.error(err).message;
       res.status(500).send(err.message);
     });
 };
+
+export const updatePhotoInfo = (req, res) => {
+  Photo.where('id', req.params.photoId).fetch()
+    .then( photo => {
+      if (!photo) {
+        throw new Error('Photo not found');
+      }
+
+      if (req.body.caption) {
+        photo.set('caption', req.body.caption);
+      }
+
+      return photo.save();
+    })
+    .then( model => {
+      res.send(`photo info updated for photo: ${model.id}`);
+    })
+    .catch( err => {
+      if (err.message == 'Photo not found') {
+        return res.status(404).send('Photo not found');
+      }
+      logger.error(err.message);
+      res.status(500).send(err.message);
+    });
+}
+
+export const listAlbums = (req, res) => {
+  Album.fetchAll()
+    .then( albums => {
+      res.send(albums.toJSON());
+    })
+    .catch( err => {
+      logger.error(err.message);
+      res.status(500).send(err.message);
+    })
+}
+
+export const listPhotos = (req, res) => {
+  Photo.where('album', req.params.albumId).fetchAll()
+    .then( photos => {
+      res.send(photos.toJSON());
+    })
+    .catch( err => {
+      logger.error(err.message);
+      res.status(500).send(err.message);
+    })
+}

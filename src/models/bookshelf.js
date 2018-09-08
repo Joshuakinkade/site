@@ -53,7 +53,9 @@ export const Photo = models.Model.extend({
     return response;
   },
   format: function(attributes) {
-    attributes.date_taken = attributes.date_taken.toJSDate();
+    if (attributes.date_taken) {
+      attributes.date_taken = attributes.date_taken.toJSDate();
+    }
     return attributes;
   }
 });
