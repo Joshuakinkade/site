@@ -10,7 +10,7 @@ const photos = new Photos({
 });
 
 export const index = (req,res) => {
-  Album.fetchAll({withRelated: ['coverPhoto']})
+  Album.query('orderBy','start_date', 'desc').fetchAll({withRelated: ['coverPhoto']})
     .then( albums => {
       albums = albums.toJSON();
       res.render('photos', getContext("Josh's Pictures", req, {albums}));
