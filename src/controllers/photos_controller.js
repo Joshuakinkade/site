@@ -159,7 +159,7 @@ export const addPhoto = (req,res) => {
       if (err.message == 'Album not found') {
         return res.status(404).send('Album not found');
       }
-      logger.error(err).message;
+      logger.error(err.message);
       res.status(500).send(err.message);
     });
 };
