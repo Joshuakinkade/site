@@ -30,7 +30,7 @@
     <div class="text">
       <div class="title">
         <h1>{album.name}</h1>
-        <div class="subtitle">{album.start_date|formatDate} - {album.end_date|formatDate}</div>
+        <div class="subtitle">{subTitle}</div>
       </div>
     </div>
   </header>

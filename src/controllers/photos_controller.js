@@ -28,8 +28,15 @@ export const album = (req,res) => {
       album = album.toJSON();
       return Photo.where('album',album.id).orderBy('date_taken').fetchAll()
         .then( photos => {       
-          photos = photos.toJSON();   
-          res.render('album-view', getContext(album.name, req, {album,photos}));
+          photos = photos.toJSON();
+
+          let subTitle = album.start_date.setLocale('en-US').toLocaleString(DateTime.DATE_FULL);
+          
+          if (!album.start_date.equals(album.end_date)) {
+            subTitle += ' - ' + album.end_date.setLocale('en-US').toLocaleString(DateTime.DATE_FULL);
+          }
+
+          res.render('album-view', getContext(album.name, req, {album,photos,subTitle}));
         });
     })
     .catch( err => {

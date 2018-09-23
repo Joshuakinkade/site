@@ -1,4 +1,4 @@
-@import "./photo";
+@import "photo";
 
 .gallery-header {
   position: relative;
@@ -90,9 +90,6 @@
   .gallery-header {
     .text {
       .title {
-        flex-direction: row;
-        align-items: flex-end;
-
         .subtitle {
           margin-left: 1em;
           font-size: $font-size-2;
