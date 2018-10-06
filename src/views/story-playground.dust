@@ -1,0 +1,18 @@
+{>"layout"/}
+
+{<pageStyles}
+  <link rel="stylesheet" type="text/css" href="/css/stories-page.css"/>
+{/pageStyles}
+
+{<pageScripts}
+  <script type="text/javascript" src="/js/storyPlayground.js"></script>
+{/pageScripts}
+
+{<content}
+  <header class="page-header">
+    <h1>Story Editor Playground</h1>
+  </header>
+  <main>
+    <div id="story-canvas"></div>
+  </main>
+{/content}

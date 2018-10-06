@@ -1,0 +1,29 @@
+.StoryCanvas {
+  display: grid;
+  grid-gap: 0;
+}
+
+.StoryCanvas .Block {
+  position: relative;
+
+  .edit-bar {
+    text-align: right;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: .25em .5em;
+    
+    button.options {
+      border: none;
+      background-color: transparent;
+      font-style: italic;
+      cursor: pointer;
+      outline: none;
+    }
+  }
+
+  .content {
+    padding: .5em;
+  }
+}

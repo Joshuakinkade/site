@@ -6,6 +6,7 @@ import * as home from './controllers/home_controller';
 import * as photos from './controllers/photos_controller';
 import * as posts from './controllers/posts_controller';
 import * as scripture from './controllers/scripture_controller';
+import * as projects from './controllers/projects_controller';
 
 const storage = multer.memoryStorage();
 const upload = multer({buffer: storage});
@@ -48,6 +49,9 @@ routes.get('/api/albums',
 routes.get('/api/albums/:albumId',
   passport.authenticate('basic', {session: false}),
   photos.listPhotos);
+
+// Projects Routes
+routes.get('/projects/stories', projects.stories);
 
 // Blog Routes
 routes.get('/blog', posts.index);
