@@ -27,6 +27,7 @@ export const Album = models.Model.extend({
   parse: function(response) {
     response.start_date = DateTime.fromJSDate(response.start_date);
     response.end_date = DateTime.fromJSDate(response.end_date);
+    response.has_story = response.has_story ? true : false;
 
     return response;
   },
@@ -37,6 +38,10 @@ export const Album = models.Model.extend({
 
     if (attributes.end_date) {
       attributes.end_date = attributes.end_date.toJSDate();
+    }
+
+    if (attributes.hasOwnProperty('has_story')) {
+      attributes.has_story = attributes.has_story ? 1 : 0;
     }
     
     return attributes;
@@ -72,6 +77,17 @@ export const Post = models.Model.extend({
   format: function(attributes) {
     attributes.post_date = attributes.post_date.toJSDate();
     return attributes;
+  }
+});
+
+export const Block = models.Model.extend({
+  idAttribute: 'id',
+  tableName: 'blocks',
+  album: function() {
+    return this.hasOne(Album, 'id', 'album');
+  },
+  photo: function() {
+    return this.hasOne(Photo, 'id', 'photo');
   }
 });
 

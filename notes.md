@@ -1,10 +1,11 @@
 # Site Notes
 
 ## Todo
-
+- add sessions & authentication
+- move api routes
+- scale down db
 - force traffic to https
 - add facebook tags
-- bulk album post route
 
 ## Context
 
