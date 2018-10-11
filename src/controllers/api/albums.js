@@ -14,6 +14,20 @@ export const listAlbums = (req, res) => {
     })
 }
 
+export const getAlbum = (req, res) => {
+  Album
+    .where('id', req.params.albumId)
+    .where('deleted_at', null)
+    .fetch({withRelated: 'coverPhoto'})
+    .then( album => {
+      res.send(album.toJSON());
+    })
+    .catch( err => {
+      logger.error(err.message);
+      res.status(500).send(err.message);
+    })
+}
+
 export const createAlbum = (req,res) => {
   const albumSlug = getSlug(req.body.name);
   const start =  DateTime.fromISO(req.body.startDate);

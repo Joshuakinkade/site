@@ -50,6 +50,10 @@ routes.get('/api/albums',
   passport.authenticate('basic', {session: false}),
   albumAPI.listAlbums);
 
+routes.get('/api/albums/:albumId',
+  passport.authenticate('basic', {session: false}),
+  albumAPI.getAlbum);
+
 routes.post('/api/albums',
   passport.authenticate('basic', {session:false}), // Authenticate request
   upload.single(), // Parse request body

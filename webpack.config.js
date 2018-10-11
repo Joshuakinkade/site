@@ -1,7 +1,8 @@
 module.exports = {
   mode: 'development',
   entry: {
-    storyPlayground: './src/react/story-playground.js'
+    storyPlayground: './src/react/story-playground.js',
+    albumPage: './src/react/album-page.js'
   },
   output: {
     path: __dirname + '/public/js/',
