@@ -19,6 +19,10 @@ const db = knex({
 
 const models = bookshelf(db);
 
+export const rawSQL = (value) => {
+  return db.raw(value);
+}
+
 export const Album = models.Model.extend({
   tableName: 'albums',
   coverPhoto: function() {
@@ -40,7 +44,7 @@ export const Album = models.Model.extend({
       attributes.end_date = attributes.end_date.toJSDate();
     }
 
-    if (attributes.hasOwnProperty('has_story')) {
+    if (attributes.has_story) {
       attributes.has_story = attributes.has_story ? 1 : 0;
     }
     

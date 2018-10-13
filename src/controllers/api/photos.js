@@ -1,42 +1,11 @@
-import {Album, Photo} from '../../models/bookshelf';
-import Photos from '../../lib/photos';
-import{getSlug} from '../../lib/helpers';
 import logger from '../../logger';
-
-const photos = new Photos({
-  rootDir: process.env.PHOTO_ROOT
-});
+import * as photos from '../../models/photos';
 
 export const addPhoto = (req,res) => {
   // Create a url friendly file name
-  const fileName = getSlug(req.file.originalname);
-
-  Album.where('id',req.params.albumId).fetch() // Get the album to build the file path
-    .then( album => {
-      if (!album) {
-        throw new Error('Album not found');
-      }
-      
-      const slug = album.get('slug');
-      // Save the image file
-      return photos.addPhoto(slug,fileName,req.file.buffer);
-    })
-    .then( (photoInfo) => {
-      // Create a new photo record and save it
-      const photo = new Photo({
-        name: req.file.originalname, 
-        filename: fileName,
-        album: req.params.albumId,
-        date_taken: photoInfo.dateTaken,
-        caption: req.body.caption || null,
-        height: photoInfo.size.height,
-        width: photoInfo.size.width
-      });
-
-      return photo.save();
-    })
-    .then( (model) => {
-      res.send(`added photo with id: ${model.id}`);
+    photos.create(req.params.albumId, req.file, req.body)
+    .then( photo => {
+      res.send(`added photo with id: ${photo.id}`);
     })
     .catch(err => {
       if (err.message == 'Album not found') {
@@ -48,18 +17,7 @@ export const addPhoto = (req,res) => {
 };
 
 export const updatePhotoInfo = (req, res) => {
-  Photo.where('id', req.params.photoId).fetch()
-    .then( photo => {
-      if (!photo) {
-        throw new Error('Photo not found');
-      }
-
-      if (req.body.caption) {
-        photo.set('caption', req.body.caption);
-      }
-
-      return photo.save();
-    })
+    photos.update(req.params.photoId, req.body)
     .then( model => {
       res.send(`photo info updated for photo: ${model.id}`);
     })
@@ -74,12 +32,12 @@ export const updatePhotoInfo = (req, res) => {
 
 // API
 export const listPhotos = (req, res) => {
-  Photo.where('album', req.params.albumId).fetchAll()
+  photos.getForAlbum(req.params.albumId)
     .then( photos => {
-      res.send(photos.toJSON());
+      res.send(photos);
     })
     .catch( err => {
       logger.error(err.message);
       res.status(500).send(err.message);
-    })
+    });
 }

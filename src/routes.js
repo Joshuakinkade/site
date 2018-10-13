@@ -59,7 +59,7 @@ routes.post('/api/albums',
   upload.single(), // Parse request body
   albumAPI.createAlbum);
 
-routes.put('/api/ablums/:albumId',
+routes.put('/api/albums/:albumId',
   passport.authenticate('basic', {session: false}),
   upload.single(),
   albumAPI.updateAlbum);

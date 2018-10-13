@@ -1,26 +1,18 @@
-import {Album} from '../../models/bookshelf';
-import {getSlug} from '../../lib/helpers';
 import logger from '../../logger';
+import * as albums from '../../models/albums';
 
-
-export const listAlbums = (req, res) => {
-  Album.fetchAll()
-    .then( albums => {
-      res.send(albums.toJSON());
-    })
+export const listAlbums = (req,res) => {
+  albums.getAll()
+    .then( albums => res.send(albums))
     .catch( err => {
       logger.error(err.message);
       res.status(500).send(err.message);
-    })
+    });
 }
 
 export const getAlbum = (req, res) => {
-  Album
-    .where('id', req.params.albumId)
-    .where('deleted_at', null)
-    .fetch({withRelated: 'coverPhoto'})
-    .then( album => {
-      res.send(album.toJSON());
+    albums.getById(req.params.albumId).then( album => {
+      res.send(album);
     })
     .catch( err => {
       logger.error(err.message);
@@ -29,63 +21,39 @@ export const getAlbum = (req, res) => {
 }
 
 export const createAlbum = (req,res) => {
-  const albumSlug = getSlug(req.body.name);
-  const start =  DateTime.fromISO(req.body.startDate);
-  const end = DateTime.fromISO(req.body.endDate);
-
-  if (!start.isValid) {
-    return res.status(400).send('Start Date not valid');
-  }
-
-  if (!end.isValid) {
-    return res.status(400).send('End Date not valid');
-  }
-
-  const album = new Album({
-    name: req.body.name,
-    slug: albumSlug,
-    start_date: start,
-    end_date: end,
-    description: req.body.description || null
-  });
-
-  album.save()
+  albums.create(req.body)
     .then( (model) => {
       res.send(`created album with id: ${model.id}`);
     })
     .catch( err => {
+      let status = 500;
+      const message = err.message;
+
       if (err.code === 'ER_DUP_ENTRY') {
-        return res.status(400).send('Album name is taken. Choose another.');
+        status = 400;
+      } else if (err.code === 'ER_NOT_VALID') {
+        status = 400;
       }
-      logger.error(err.message);
-      res.status(500).send(err.message);
-    })
+
+      logger.error(message);
+      res.status(status).send(err.message);
+    });
 };
 
 export const updateAlbum = (req, res) => {
-Album.where('id', req.params.albumId).fetch()
-  .then( album => {
-    if (!album) {
-      return res.status(404).send(`Album with id ${req.params.albumId} does not exist`);
-    }
-
-    const newData = Object.assign({},req.body);
-
-    // Copy properties from the request body to the album
-    for (const key in newData) {
-      if (newData.hasOwnProperty(key)) {
-        const value = newData[key];
-        album.set(key,value);
-      }
-    }
-
-    return album.save()
-      .then( () => {
-        res.send('ok');
-      });
+  albums.update(req.params.albumId, req.body)
+  .then( () => {
+    res.send('ok');
   })
   .catch( err => {
-    logger.error(err.message);
-    res.status(500).send(err.message);
+    let status = 500;
+    const message = err.message;
+
+    if (err.code === 'ER_NOT_FOUND') {
+      status = 404;
+    }
+
+    logger.error(message);
+    res.status(status).send(err.message);
   });
 }
