@@ -16,20 +16,20 @@ export default class AlbumPage extends Component {
       editing: false,
       error: null
     };
-
   }
 
   componentDidMount() {
     let pageAlbum;
-    getAlbum(1)
+    getAlbum(this.props.albumId)
       .then( album => {
         pageAlbum = album; 
-        return getPhotos(1);
+        return getPhotos(this.props.albumId);
       })
       .then( photos => {
         this.setState({album: pageAlbum, photos, error: null});
       })
       .catch( err => {
+        console.log(err);
         this.setState({error: err});
       });
   }

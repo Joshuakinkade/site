@@ -7,12 +7,9 @@
 {/pageStyles}
 
 {<pageScripts}
-  <script src="/js/photoswipe.min.js"></script>
-  <script src="/js/photoswipe-ui-default.min.js"></script>
-  <script src="/js/album-view.js"></script>
   <script src="/js/albumPage.js"></script>
 {/pageScripts}
 
 {<content}
-  <div id="app-root"></div>
+  <div id="app-root" data-album-id="{album.id}"></div>
 {/content}

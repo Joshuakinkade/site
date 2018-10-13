@@ -11,7 +11,8 @@ export const listAlbums = (req,res) => {
 }
 
 export const getAlbum = (req, res) => {
-    albums.getById(req.params.albumId).then( album => {
+  albums.getById(req.params.albumId)
+    .then( album => {
       res.send(album);
     })
     .catch( err => {

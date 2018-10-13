@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --watch",
     "sass": "sass --watch ./src/sass/:./public/css/",
-    "start": "node ./src/bootstrap.js"
+    "start": "node ./src/bootstrap.js",
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",
