@@ -1,9 +1,16 @@
-import {DateTime} from 'luxon';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import {StaticRouter} from 'react-router-dom';
 
 import logger from '../logger';
-import {Album, Photo} from '../models/bookshelf';
+import {Album} from '../models/bookshelf';
 import {getContext} from '../lib/helpers';
 import Photos from '../lib/photos';
+
+import * as albumService from '../models/albums';
+import * as photoService from '../models/photos';
+
+import App from '../react/App';
 
 const photos = new Photos({
   rootDir: process.env.PHOTO_ROOT
@@ -23,10 +30,21 @@ export const index = (req,res) => {
 };
 
 export const album = (req,res) => {
-  Album.where('slug',req.params.albumSlug).fetch({withRelated:['coverPhoto']})
+  return Album.where('slug',req.params.albumSlug).fetch({withRelated:['coverPhoto']})
     .then( album => {
       album = album.toJSON();
-      res.render('album-view', getContext(album.name, req, {album}));
+      return photoService.getForAlbum(album.id)
+        .then( photos => {
+          const initialState = {album, photos, error: null};
+          const location = req.url;
+          const context = {};
+          const html = ReactDOMServer.renderToString(
+            <StaticRouter location={location} context={context}>
+              <App albumId={album.id} initialState={initialState}/>
+            </StaticRouter>
+          );
+          return res.render('album-view', getContext(album.name, req, {album, app: html, initialState}));
+        });
     })
     .catch( err => {
       logger.error(err.message);

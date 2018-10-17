@@ -3,9 +3,7 @@ import { DateTime } from 'luxon';
 
 const GalleryHeader = (props) => {
   const album = props.album;
-
-  console.log(album);
-
+  
   const oneDay = +album.start_date === +album.end_date;
   let dateString = album.start_date.toLocaleString(DateTime.DATE_FULL);
   if (!oneDay) {

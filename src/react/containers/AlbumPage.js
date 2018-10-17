@@ -10,26 +10,33 @@ export default class AlbumPage extends Component {
     super(props);
 
     this.state = {
-      album: null,
-      photos: [],
       view: 'grid',
-      editing: false,
-      error: null
+      editing: false
     };
+
+    if (props.initialState) {
+      this.state.album = props.initialState.album;
+      this.state.photos = props.initialState.photos;
+      this.state.error = props.initialState.error;
+    } else {
+      this.state.album = null;
+      this.state.photos = [];
+      this.state.error = null;
+    }
   }
 
   componentDidMount() {
     let pageAlbum;
     getAlbum(this.props.albumId)
       .then( album => {
-        pageAlbum = album; 
+        pageAlbum = album;
         return getPhotos(this.props.albumId);
       })
       .then( photos => {
         this.setState({album: pageAlbum, photos, error: null});
       })
       .catch( err => {
-        console.log(err);
+        console.log(JSON.stringify(err));
         this.setState({error: err});
       });
   }
@@ -48,6 +55,6 @@ export default class AlbumPage extends Component {
           )}
         </PhotoGrid>
       </main>
-    </div>) : '';
+    </div>) : <div>No Ablum Loaded</div>;
   }
 }

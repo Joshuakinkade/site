@@ -7,9 +7,12 @@
 {/pageStyles}
 
 {<pageScripts}
+  <script>
+    const initialState = {initialState|js|s};
+  </script>
   <script src="/js/albumPage.js"></script>
 {/pageScripts}
 
 {<content}
-  <div id="app-root" data-album-id="{album.id}"></div>
+  <div id="app-root" data-album-id="{album.id}">{app|s}</div>
 {/content}
