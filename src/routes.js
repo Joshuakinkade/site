@@ -24,7 +24,7 @@ routes.get('/sitemap.xml', home.sitemap);
 
 // Photos Routes
 routes.get('/pictures', photos.index);
-routes.get('/pictures/:albumSlug', photos.album);
+routes.get('/pictures/:albumSlug/:fileName?', photos.album);
 routes.get('/pictures/:albumSlug/:size/:filename', photos.photo);
 
 // Projects Routes

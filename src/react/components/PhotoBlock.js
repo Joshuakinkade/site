@@ -1,14 +1,12 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const PhotoBlock = (props) => {
   const photo = props.photo;
   const album = props.album;
   return (
     <div className="tile">
-      <a href={`/pictures/${album.slug}/full/${photo.filename}`}
-        className="photo-link"
-        data-size={`${photo.height}x${photo.width}`}
-        data-caption={`${photo.caption}`}>
+      <Link to={`/pictures/${album.slug}/${photo.filename}`} className="photo-link">
         <div className="photo-block">
           <div className="photo-outer">
             <div className="photo-inner">
@@ -16,7 +14,7 @@ const PhotoBlock = (props) => {
             </div>
           </div>
         </div>
-      </a>
+      </Link>
     </div>
   );
 }
