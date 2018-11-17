@@ -1,5 +1,7 @@
 import {Album, Post, Scripture} from '../models/bookshelf';
 import logger from '../logger';
+import * as albumService from '../models/albums';
+import * as postService from '../models/posts';
 import {combineRecents, getContext} from '../lib/helpers';
 import {addCoverPhoto, addCoverPhotoAlbum} from './posts_controller';
 
@@ -8,20 +10,9 @@ export const index = (req,res) => {
 
   const queries = [];
 
-  queries.push(Album
-    .query('orderBy','start_date','desc')
-    .query('limit', RECENT_POST_COUNT)
-    .fetchAll({withRelated: ['coverPhoto']}));
+  queries.push(albumService.getRecent({count: RECENT_POST_COUNT}));
 
-  queries.push(Post
-    .query('orderBy','post_date','desc')
-    .query('limit',RECENT_POST_COUNT)
-    .fetchAll().then( posts => {
-      posts = posts.toJSON();
-      return Promise.all(posts.map( post => {
-        return addCoverPhoto(post).then( post => addCoverPhotoAlbum(post));
-      }));
-    }));
+  queries.push(postService.getRecent({count: RECENT_POST_COUNT}));
 
   queries.push(Scripture
     .query('orderBy','created_at','desc')
@@ -30,7 +21,7 @@ export const index = (req,res) => {
 
   Promise.all(queries)
     .then( ([albums,posts,scripture]) => {
-      albums = albums.toJSON().map( album => {
+      albums = albums.map( album => {
         album.type = 'Album';
         return album;
       });
