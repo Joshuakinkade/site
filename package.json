@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watch",
-    "sass": "sass --watch ./src/sass/:./public/css/",
+    "sass": "node-sass --watch ./src/sass/ -o ./public/css/",
     "start": "node ./src/bootstrap.js"
   },
   "author": "",
@@ -32,6 +32,7 @@
     "marked": "^0.4.0",
     "multer": "^1.3.1",
     "mysql": "^2.15.0",
+    "node-sass": "^4.10.0",
     "nunjucks": "^3.1.3",
     "passport": "^0.4.0",
     "passport-http": "^0.3.0",
