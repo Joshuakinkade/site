@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watch",
-    "sass": "node-sass --watch ./src/sass/ -o ./public/css/",
+    "sass": "node-sass ./src/sass/ -o ./public/css/",
     "start": "node ./src/bootstrap.js"
   },
   "author": "",

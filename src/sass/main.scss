@@ -1,35 +1,11 @@
 @import "../../node_modules/bootstrap/scss/bootstrap";
-
-h1 {
-  font-size: 3em;
-  font-weight: normal;
-  margin: .5em 0;
-}
+@import "components/siteheader";
 
 html, body {
   height: 100%;
 }
 
-body {
-  background-color: white;
-}
-
 .page-content {
-  box-sizing: border-box;
   padding-top: 56px;
-  // padding-left: 1em;
-  // padding-right: 1em;
   height: 100%;
-}
-
-.site-header .navbar {
-  // box-shadow: 0 0 .6em .1em black;
-  background-color: darkred;
-}
-
-@media (min-width: 1200px) {
-  .wrapper {
-    width: 1024px;
-    margin: 0 auto;
-  }
 }
