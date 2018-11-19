@@ -6,5 +6,5 @@ export const getRecent = ({count}) => {
     query.query('limit', count);
   }
 
-  return query.fetchAll({withRelated: 'coverPhoto'});
+  return query.fetchAll({withRelated: 'coverPhoto'}).then( posts => posts.toJSON());
 };

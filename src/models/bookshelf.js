@@ -70,7 +70,9 @@ export const Post = models.Model.extend({
     return response;
   },
   format: function(attributes) {
-    attributes.post_date = attributes.post_date.toJSDate();
+    if (attributes.post_date) {
+      attributes.post_date = attributes.post_date.toJSDate();
+    }
     return attributes;
   }
 });

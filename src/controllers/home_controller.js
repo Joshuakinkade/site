@@ -12,7 +12,21 @@ export const index = (req,res) => {
 
   queries.push(albumService.getRecent({count: RECENT_POST_COUNT}));
 
-  queries.push(postService.getRecent({count: RECENT_POST_COUNT}));
+  queries.push(postService
+    .getRecent({count: RECENT_POST_COUNT})
+    .then( posts => {
+      const albumQueries = posts.map( post =>
+        post.coverPhoto ?
+        albumService.getById(post.coverPhoto.album).then( album => {
+          post.coverPhoto.album = album
+          return post;
+        }) :
+        post
+      );
+      return Promise.all(albumQueries).then( posts => {
+        return posts;
+      });
+    }));
 
   queries.push(Scripture
     .query('orderBy','created_at','desc')
@@ -21,6 +35,7 @@ export const index = (req,res) => {
 
   Promise.all(queries)
     .then( ([albums,posts,scripture]) => {
+
       albums = albums.map( album => {
         album.type = 'Album';
         return album;
