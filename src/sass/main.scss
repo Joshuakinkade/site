@@ -1,3 +1,4 @@
+@import "variables";
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "components/siteheader";
 
@@ -8,4 +9,14 @@ html, body {
 .page-content {
   padding-top: 56px;
   height: 100%;
+}
+
+::selection {
+  color: darkred;
+  background-color: whitesmoke;
+}
+
+::-moz-selection {
+  color: darkred;
+  background-color: whitesmoke;
 }

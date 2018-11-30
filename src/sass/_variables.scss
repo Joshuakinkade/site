@@ -8,3 +8,33 @@ $font-size-3: 28px;
 $font-size-4: 37px;
 $font-size-5: 50px;
 $font-size-6: 66px;
+
+// Bootstrap Resets
+
+$body-color: #333;
+// $body-bg: whitesmoke;
+
+$red: darkred;
+$primary: $red;
+
+$link-hover-decoration: none;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+// $font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-sans-serif: Arial, sans-serif;
+$font-family-base: $font-family-sans-serif;
+
+
+
+$navbar-light-color:                rgba($red, .5);
+$navbar-light-hover-color:          rgba($red, .7);
+$navbar-light-active-color:         rgba($red, .9);
+$navbar-light-disabled-color:       rgba($red, .3);
+$navbar-light-toggler-border-color: rgba($red, .1);

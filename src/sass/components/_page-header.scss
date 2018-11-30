@@ -4,14 +4,15 @@
   h1 {
     margin: 0;
     font-size: 65px;
-    font-weight: 100;
-    border-bottom: solid gray 1px;
-    padding: 0 16px;
+    font-weight: normal;
+    border-bottom: solid darkred 2px;
+    // padding: 0 16px;
+    // color: $red;
   }
 
   p.subtitle {
     margin: 0;
     padding-left: .5em;
-    color: gray;
+    // color: rgba($red, .7);
   }
 }

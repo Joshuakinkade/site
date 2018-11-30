@@ -11,10 +11,10 @@
   <main class="gallery">
     <div class="photo-grid">
       {#albums}
-        <div class="tile">
+        <div class="album-tile">
           <a href="/pictures/{slug}">
             <div class="photo-block">
-              <div class="photo-outer mid">
+              <div class="photo-outer short">
                 <div class="photo-inner">
                   {?coverPhoto}
                     <img src="/pictures/{slug}/thumb/{coverPhoto.filename}"/>
@@ -23,9 +23,10 @@
                   {/coverPhoto}
                 </div>
               </div>
-              <div class="text">
-                <h2>{name}</h2>
-              </div>
+            </div>
+            <div class="photo-info">
+              <h2>{name}</h2>
+              <p>May 21, 2018 - May 23, 2018</p>
             </div>
           </a>
         </div>

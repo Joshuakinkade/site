@@ -2,45 +2,39 @@
 @import "components/page-header";
 @import "components/photo-block";
 
-.photo-grid {
-  padding: 0 1em;
-  line-height: 0;
-  padding-bottom: 1em;
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-gap: 1em;
+.photo-info {
+  margin: .5rem;
 }
 
-.tile {
-  .text {
-    text-align: left;
-    padding: .5em .75em;
-    color: whitesmoke;
-  }
-
+a .photo-info {
   h2 {
-    font-size: $font-size-3;
-    font-weight: 100;
-    letter-spacing: .1em;
-    font-family: sans-serif;
-    margin: 0;
+    color: $body-color;
+  }
+
+  p {
+    font-style: italic;
+    color: rgba($body-color, .7);
   }
 }
 
-@media (min-width: 576px) {
-  .photo-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+// a:hover,a:active .photo-info {
+//   h2 {
+//     color: $primary;
+//   }
 
-@media (min-width: 768px) {
-  .photo-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-// @media (min-width: 1200px) {
-//   .photo-grid {
-//     grid-template-columns:  repeat(8, 1fr);
+//   p {
+//     color: rgba($primary, .7);
 //   }
 // }
+
+@media (min-width: map-get($map: $grid-breakpoints, $key: 'lg')) {
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+  }
+
+  .album-tile {
+    border-bottom: solid rgba($body-color, .5) 1px;
+  }
+}

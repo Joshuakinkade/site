@@ -13,8 +13,8 @@
 {/pageScripts}
 
 {<content}
-  <header class="gallery-header {^album.coverPhoto}dark{/album.coverPhoto}">
-    {?album.coverPhoto}
+  {?album.coverPhoto}
+    <header class="gallery-header">
       <div class="background">
         <div class="photo">
           <div class="photo-outer short">
@@ -26,14 +26,21 @@
         <div class="gradient">
         </div>
       </div>
-    {/album.coverPhoto}
-    <div class="text">
-      <div class="title">
-        <h1>{album.name}</h1>
-        <div class="subtitle">{subTitle}</div>
+      <div class="text">
+        <div class="title">
+          <h1>{album.name}</h1>
+          <div class="subtitle">{subTitle}</div>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
+  {:else}
+    <header class="page-header">
+      <h1>{album.name}</h1>
+      <p class="subtitle">
+        {subTitle}
+      </p>
+    </header>
+  {/album.coverPhoto}
   <main>
     <div class="headline">
       <p>{album.description}</p>
