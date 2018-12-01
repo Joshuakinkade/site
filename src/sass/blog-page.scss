@@ -3,28 +3,33 @@
 @import "./components/photo-block";
 
 .post {
-  padding: 0 1em;
-  margin-bottom: 1em;
+  margin: 2em 0;
+  padding-bottom: 1em;
+  border-bottom: solid gray 1px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  a {
+    color: $body-color;
+    transition: color .25s ease-in;
+  }
+
+  a:hover {
+    color: $primary;
+  }
   
   header h2 {
-    font-size: $font-size-4;
+    font-size: $font-size-5;
     margin-bottom: 0em;
-
-    a {
-      color: #222;
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: #444;
-    }
   }
 
   .cover-photo {
     width: 100%;
 
     .photo-outer {
-      padding-top: 66.7%;
+      padding-top: 50%;
     }
 
     img {
@@ -33,18 +38,11 @@
   }
 }
 
+.post .text {
+  margin-top: .5em;
+}
+
 .post .post-content {
-  // padding: 0 .5em;
-
-  a {
-    color: gray;
-    text-decoration: none;  
-  }
-
-  a:hover {
-    color: darken(gray, 10%);
-  }
-
   p {
     margin-bottom: 0;
     font-family: sans-serif;
@@ -52,17 +50,12 @@
   }
 }
 
-@media(min-width: 768px) {
-  .wrapper {
-    max-width: 1024px;
-    margin: 0 auto;
-  }
+@media(min-width: map-get($map: $grid-breakpoints, $key: 'lg')) {
 
-  .post {
+  .post a{
     padding: 0;
     display: flex;
     flex-direction: row;
-    margin-bottom: 1em;
 
     header h2 {
       margin-bottom: .25em;
@@ -71,9 +64,14 @@
     .cover-photo {
       flex: 1;
       margin-right: 1em;
+
+      .photo-outer {
+        padding-top: 66.67%;
+      }
     }
 
     .text {
+      margin-top: 0;
       flex: 2;
     }
   }

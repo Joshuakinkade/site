@@ -5,8 +5,8 @@
 {/pageStyles}
 
 {<content}
-<header class="gallery-header {^post.coverPhoto}dark{/post.coverPhoto}">
-  {?post.coverPhoto}
+{?post.coverPhoto}
+  <header class="gallery-header {^post.coverPhoto}dark{/post.coverPhoto}">
     <div class="background">
       <div class="photo">
         <div class="photo-outer short">
@@ -18,14 +18,19 @@
       <div class="gradient">
       </div>
     </div>
-  {/post.coverPhoto}
-  <div class="text">
-    <div class="title">
-      <h1>{post.title}</h1>
-      <div class="subtitle">{post.post_date|formatDate}</div>
+    <div class="text">
+      <div class="title">
+        <h1>{post.title}</h1>
+        <div class="subtitle">{post.post_date|formatDate}</div>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
+{:else}
+<header class="page-header">
+    <h1>{post.title}</h1>
+    <p class="subtitle">{post.post_date|formatDate}</p>
+  </header>
+{/post.coverPhoto}
 <main>
   <!-- <div class="headline">
     <p>{post.headline}</p>

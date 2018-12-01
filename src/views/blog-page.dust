@@ -12,31 +12,32 @@
     <div class="post-list">
       {#posts}
         <div class="post">
-          <div class="cover-photo">
-            <div class="photo-block">
-              <div class="photo-outer">
-                <div class="photo-inner">
-                  <a href="blog/{slug}">
-                    {?coverPhoto}
-                      <img src="/pictures/{coverPhoto.album.slug}/thumb/{coverPhoto.filename}"/>
-                    {:else}
-                      <img src="/images/no-photo.jpg"/>
-                    {/coverPhoto}
-                  </a>
+          <a href="/blog/{slug}">
+            {?coverPhoto}
+            <div class="cover-photo">
+                <div class="photo-block">
+                  <div class="photo-outer">
+                    <div class="photo-inner">
+                      {?coverPhoto}
+                        <img src="/pictures/{coverPhoto.album.slug}/thumb/{coverPhoto.filename}"/>
+                      {:else}
+                        <img src="/images/no-photo.jpg"/>
+                      {/coverPhoto}
+                    </div>
+                  </div>
                 </div>
-              </div>
             </div>
-          </div>
-          <div class="text">
-            <header>
-              <h2><a href="/blog/{slug}">{title}</a></h2>
-            </header>
-            <main class="post-content">
-              <a href="blog/{slug}">
-                <p>{headline}</p>
-              </a>
-            </main>
-          </div>
+            {/coverPhoto}
+
+            <div class="text">
+              <header>
+                <h2>{title}</h2>
+              </header>
+              <main class="post-content">
+                  <p>{headline}</p>
+              </main>
+            </div>
+          </a>
         </div>
       {/posts}
     </div>
