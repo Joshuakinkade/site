@@ -3,7 +3,7 @@
 @import "components/photo-block";
 
 .photo-info {
-  margin: .5rem;
+  margin: .5em;
 }
 
 a .photo-info {
@@ -16,16 +16,6 @@ a .photo-info {
     color: rgba($body-color, .7);
   }
 }
-
-// a:hover,a:active .photo-info {
-//   h2 {
-//     color: $primary;
-//   }
-
-//   p {
-//     color: rgba($primary, .7);
-//   }
-// }
 
 @media (min-width: map-get($map: $grid-breakpoints, $key: 'lg')) {
   .photo-grid {

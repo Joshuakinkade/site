@@ -7,7 +7,7 @@
   padding: 0 1em;
 
   p {
-    margin: 1em 0;
+    margin: 28px 0;
     font-family: serif;
     font-size: $font-size-2;
     font-style: italic;
@@ -31,9 +31,3 @@
     padding-left: 0;
   }
 }
-
-// @media (min-width: 1200px) {
-//   .photo-grid {
-//     grid-template-columns:  repeat(4, 1fr);
-//   }
-// }
