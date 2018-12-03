@@ -13,6 +13,16 @@ export const index = (req,res) => {
   Album.query('orderBy','start_date', 'desc').fetchAll({withRelated: ['coverPhoto']})
     .then( albums => {
       albums = albums.toJSON();
+      albums = albums.map( album => {
+        let dateRange = album.start_date.setLocale('en-US').toLocaleString(DateTime.DATE_FULL);
+          
+        if (!album.start_date.equals(album.end_date)) {
+          dateRange += ' - ' + album.end_date.setLocale('en-US').toLocaleString(DateTime.DATE_FULL);
+        }
+
+        album.dateRange = dateRange;
+        return album;
+      });
       res.render('photos', getContext("Josh's Pictures", req, {albums}));
       return null;
     })
