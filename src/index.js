@@ -4,7 +4,8 @@ import consolidate from 'consolidate';
 import dust from 'dustjs-linkedin';
 import passport from 'passport';
 import {BasicStrategy} from 'passport-http';
-import routes from './routes';
+import routes from './routes/web';
+import apiRoutes from './routes/api';
 import logger from './logger';
 import {formatDate, formatDateTime, snippet, md} from './lib/dust-filters';
 
@@ -19,9 +20,7 @@ passport.use(new BasicStrategy( (username, password, done) => {
 
 /* Configure app */
 const app = express();
-
 app.set('site-name', process.env.SITE_NAME);
-
 app.disable('x-powered-by');
 
 /* Configure Template Engine */
@@ -37,6 +36,7 @@ app.set('views', './src/views');
 /* Serve Static Files */
 app.use(express.static('./public'));
 
+/* Enable response compression */
 app.use(compression());
 
 /* Log Request URLs */
@@ -46,7 +46,8 @@ app.use((req,res,next) => {
 });
 
 /* Configure Routes */
-app.use('/',routes);
+app.use('/', routes);
+app.use('/api', apiRoutes);
 
 app.use((req,res) => {
   res.status(404).render('errors/not-found',{pageTitle:'Not Found'});

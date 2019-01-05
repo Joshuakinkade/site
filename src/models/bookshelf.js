@@ -25,8 +25,13 @@ export const Album = models.Model.extend({
     return this.hasOne(Photo, 'id', 'cover_photo');
   },
   parse: function(response) {
-    response.start_date = DateTime.fromJSDate(response.start_date);
-    response.end_date = DateTime.fromJSDate(response.end_date);
+    if (response.start_date) {
+      response.start_date = DateTime.fromJSDate(response.start_date);
+    }
+
+    if (response.end_date) {
+      response.end_date = DateTime.fromJSDate(response.end_date);
+    }
 
     return response;
   },

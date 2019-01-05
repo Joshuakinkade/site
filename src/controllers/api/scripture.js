@@ -1,5 +1,5 @@
-import {Scripture} from '../models/bookshelf';
-import logger from '../logger';
+import {Scripture} from '../../models/bookshelf';
+import logger from '../../logger';
 
 export const postScripture = (req, res) => {
   if (!req.body.text || !req.body.reference) {
