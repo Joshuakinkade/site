@@ -1,5 +1,6 @@
 import {DateTime} from 'luxon';
 
+import logger from '../../logger';
 import {Album} from '../../models/bookshelf';
 import {getSlug} from '../../lib/helpers';
 
@@ -15,7 +16,7 @@ export const listAlbums = (req, res) => {
 }
 
 export const getAlbum = (req, res) => {
-  Album.where('id', req.params.albumId).fetch()
+  Album.where('id', req.params.albumId).fetch({withRelated: 'coverPhoto'})
     .then( album => {
       res.send(album.toJSON());
     })
