@@ -19,7 +19,6 @@ export default class PhotoStorage {
         const parser = exif.create(data);
         parser.enableSimpleValues(false);
         const exifData = parser.parse();
-        console.log(exifData);
         const date = exifData.tags.CreateDate || exifData.tags.DateTimeOriginal || DateTime.now();
         const dateTaken = DateTime.fromFormat(date, 'yyyy:MM:dd HH:mm:ss');
         return this.library.writeFile(folder, name, data)

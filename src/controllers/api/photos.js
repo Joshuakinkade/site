@@ -1,16 +1,24 @@
 import logger from '../../logger';
 import {Album, Photo} from '../../models/bookshelf';
 import {getSlug} from '../../lib/helpers';
+import Photos from '../../lib/photos';
+
+const photos = new Photos({
+  rootDir: process.env.PHOTO_ROOT
+});
 
 export const addPhoto = (req,res) => {
 // Create a url friendly file name
 const fileName = getSlug(req.file.originalname);
+let album;
 
 Album.where('id',req.params.albumId).fetch() // Get the album to build the file path
-  .then( album => {
-    if (!album) {
+  .then( a => {
+    if (!a) {
       throw new Error('Album not found');
     }
+
+    album = a;
     
     const slug = album.get('slug');
     // Save the image file
@@ -28,10 +36,29 @@ Album.where('id',req.params.albumId).fetch() // Get the album to build the file 
       width: photoInfo.size.width
     });
 
-    return photo.save();
+    return photo.save().then( ({id}) => {
+      photo.id = id;
+      photo.set('date_taken', photoInfo.dateTaken);
+      return photo;
+    });
   })
-  .then( (model) => {
-    res.send(`added photo with id: ${model.id}`);
+  .then( photo => {
+    const photoDate = photo.get('date_taken');
+    const start = album.get('start_date');
+    const end = album.get('end_date');
+
+    if (start === null || start > photoDate) {
+      album.set('start_date', photoDate);
+    }
+
+    if (end === null || end < photoDate) {
+      album.set('end_date', photoDate);
+    }
+
+    return album.save().then( () => photo);
+  })
+  .then( photo => {
+    res.send(`added photo with id: ${photo.id}`);
   })
   .catch(err => {
     if (err.message == 'Album not found') {

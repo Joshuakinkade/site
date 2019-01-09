@@ -15,10 +15,13 @@ export const index = (req,res) => {
     .then( albums => {
       albums = albums.toJSON();
       albums = albums.map( album => {
-        let dateRange = album.start_date.setLocale('en-US').toLocaleString(DateTime.DATE_FULL);
-          
-        if (!album.start_date.equals(album.end_date)) {
-          dateRange += ' - ' + album.end_date.setLocale('en-US').toLocaleString(DateTime.DATE_FULL);
+        let dateRange = '';
+        if (album.start_date && album.end_date) {
+          dateRange = album.start_date.setLocale('en-US').toLocaleString(DateTime.DATE_FULL);
+            
+          if (!album.start_date.equals(album.end_date)) {
+            dateRange += ' - ' + album.end_date.setLocale('en-US').toLocaleString(DateTime.DATE_FULL);
+          }
         }
 
         album.dateRange = dateRange;
@@ -28,7 +31,7 @@ export const index = (req,res) => {
       return null;
     })
     .catch( err => {
-      logger.error(err);
+      console.log(err);
       res.render('errors/system-error');
     });
 };

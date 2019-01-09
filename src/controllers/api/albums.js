@@ -28,22 +28,10 @@ export const getAlbum = (req, res) => {
 
 export const createAlbum = (req,res) => {
   const albumSlug = getSlug(req.body.name);
-  const start =  DateTime.fromISO(req.body.startDate);
-  const end = DateTime.fromISO(req.body.endDate);
-
-  if (!start.isValid) {
-    return res.status(400).send('Start Date not valid');
-  }
-
-  if (!end.isValid) {
-    return res.status(400).send('End Date not valid');
-  }
 
   const album = new Album({
     name: req.body.name,
     slug: albumSlug,
-    start_date: start,
-    end_date: end,
     description: req.body.description || null
   });
 
