@@ -1,5 +1,3 @@
-import {DateTime} from 'luxon';
-
 import logger from '../../logger';
 import {Album} from '../../models/bookshelf';
 import {getSlug} from '../../lib/helpers';
@@ -11,7 +9,9 @@ export const listAlbums = (req, res) => {
     })
     .catch( err => {
       logger.error(err.message);
-      res.status(500).send(err.message);
+      res.status(500).send({
+        error: err.message
+      });
     });
 }
 
@@ -37,7 +37,7 @@ export const createAlbum = (req,res) => {
 
   album.save()
     .then( (model) => {
-      res.send(`created album with id: ${model.id}`);
+      res.send(model.toJSON());
     })
     .catch( err => {
       if (err.code === 'ER_DUP_ENTRY') {

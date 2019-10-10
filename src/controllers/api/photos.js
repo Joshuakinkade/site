@@ -58,7 +58,7 @@ Album.where('id',req.params.albumId).fetch() // Get the album to build the file 
     return album.save().then( () => photo);
   })
   .then( photo => {
-    res.send(`added photo with id: ${photo.id}`);
+    res.send(photo.toJSON());
   })
   .catch(err => {
     if (err.message == 'Album not found') {
@@ -95,7 +95,7 @@ Photo.where('id', req.params.photoId).fetch()
 }
 
 export const listPhotos = (req, res) => {
-Photo.where('album', req.params.albumId).fetchAll()
+Photo.where('album', req.params.albumId).orderBy('date_taken', 'ASC').fetchAll()
   .then( photos => {
     res.send(photos.toJSON());
   })
