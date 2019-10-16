@@ -1,144 +1,184 @@
-@import 'variables';
-@import 'components/photo-block';
+@import "variables";
 
-// Common Stuff (colors, typography, etc)
+/*********************************** GLOBAL **********************************/
+// .container {
+//   max-width: 1024px;
+//   margin: 0 auto;
+// }
+
+/************************************ HOME ***********************************/
+.content-grid {
+  display: flex;
+  flex-flow: row wrap; 
+
+  .recents {
+    order: 1;
+    min-width: 100%;
+  }
+
+  .snapshots {
+    order: 2;
+    flex: 1;
+    margin-right: 16px;
+  }
+
+  .quick-pics {
+    order: 3;
+    flex: 1;
+  }
+}
+
 .scripture {
-  padding: 0 1em;
+  margin: 64px auto;
+
   blockquote {
-    margin: 0;
-    font-family: 'Merienda', cursive;
-    font-weight: normal;
+    font-size: $font-size-3;
 
     p {
-      margin: 0 auto;
-      // width: 90%;
+      margin: 0;
+      font-style: italic;
     }
 
     cite {
-      &::before {
-        content: '- ';
-      }
-  
-      font-size: .5em;
+      font-size: 18px;
       float: right;
+
+      &::before {
+        content: '-- ';
+      }
+    }
+
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
     }
   }
 }
 
-.recent-posts {
-  padding-bottom: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
+.post {
+  margin: 16px 0;
+  border-top: solid gray 1px;
 
   h2 {
-    margin: 0;
+    margin: 8px 0;
+    font-weight: 400;
     text-align: center;
-    border-bottom: solid $primary 2px;
-    font-size: 25px;
+    font-size: $font-size-2;
   }
 
-  h3 {
-    text-align: center;
-    font-size: 16px;
-  }
-}
-
-// Layout Stuff
-.scripture {
-  font-size: 1.5em;
-  line-height: 1.5em;
-  position: relative;
-
-  blockquote {
-    margin: 10% 0;
-  }
-}
-
-.posts {
-
-  .post-summary {
-    margin: 0;
-    margin-top: 1em;
-    vertical-align: text-bottom;
-    padding: 0 .5em;
+  p {
+    font-size: 18px;
+    text-align: left;
   }
 
-  a {
-    color: black;
-    text-decoration: none;
-  }
-
-  h3 {
-    margin: .5em 0;
-    text-align: center
-  }
-
-  .sample {
-    img {
-      image-orientation: from-image;
-      max-width: 100%;
-      max-height: 100%;
-    }
-  }
-}
-
-@media (min-width: 576px) {
-  .page-content {
-    display: flex;
-    flex-direction: column;
-    width: 768px;
-    margin: 0 auto;
-  }
-
-  .scripture {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    blockquote {
-      font-size: 1.5em;
-      line-height: 1.5em;
-      margin: 0;
-    }
-  }
-
-  .recent-posts {
-    display: flex;
-    flex-direction: column;
+  &:first-child {
+    border-top: none;
 
     h2 {
-      text-align: left;
-      letter-spacing: 1px;
+      margin: 8px 0;
+      font-size: $font-size-4;
+      line-height: $font-size-4;
     }
   }
+}
 
-  .posts {
+.picture {
+  position: relative;
+  padding-top: 67%;
+
+  .picture-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: lightgray;
+    overflow: hidden;
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+.quick-pic {
+  margin: 16px 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.view {
+  border-top: solid gray 1px;
+  margin: 20px 0;
+
+  h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+@media(min-width: 768px) {
+  .scripture {
+    max-width: 60%;
+  }
+
+  .content-grid {
+    margin: 32px 0;
     display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-
-    .post-summary {
+  
+    .snapshots {
       flex: 1;
-      margin: 0;
-
-      h3 {
-        font-size: 16px;
-        letter-spacing: 1px;
-        text-align: center;
+      border-right: solid gray 1px;
+      text-align: center;
+      padding: 0 16px;
+      margin-top: 30px;
+      margin-right: 0;
+      order: 1;
+    }
+  
+    .recents {
+      flex: 2;
+      text-align: center;
+      padding: 0 16px;
+      order: 2;
+      min-width: auto;
+    }
+  
+    .quick-pics {
+      flex: 1;
+      border-left: solid gray 1px;
+      text-align: center;
+      padding: 0 16px;
+      margin-top: 30px;
+      order: 3;
+  
+      h2 {
+        margin-top: 20px;
+        margin-bottom: 10px;
       }
     }
   }
-}
 
-.sample .photo-block .text {
-  p {
-    margin: .25em;
+  .post {
+    h2 {
+      font-size: $font-size-3;
+      line-height: $font-size-3;
+      margin: 16px 0;
+    }
   }
-}
 
-@media (min-width: 1200px) {
-  .scripture {
-    font-size: $font-size-3;
+  .post:first-child {
+    h2 {
+      font-size: $font-size-5;
+      line-height: $font-size-5;
+      margin: 16px 0;
+    }
   }
 }

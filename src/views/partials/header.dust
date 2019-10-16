@@ -1,24 +1,24 @@
 <header class="site-header">
-  <nav class="navbar navbar-light navbar-expand-md fixed-top">
-    <a href="/" class="navbar-brand">JK</a>
-    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#site-nav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div id="site-nav" class="collapse navbar-collapse">
-      <ul class="navbar-nav md-auto">
-        <li {@eq key=rootPath value="/"} class="nav-item active" {:else} class="nav-item" {/eq}>
-          <a href="/" class="nav-link">Home</a>
+    <div class="site-title">
+      <h1>JoshuaKinkade.me</h1>
+    </div>
+    <nav class="site-nav">
+      <button class="nav-toggle">
+        <span class="label">Menu</span>
+      </button>
+      <ul>
+        <li class="active">
+          <a href="/">Home</a>
         </li>
-        <li {@eq key=rootPath value="/pictures"} class="nav-item active" {:else} class"nav-item" {/eq}>
-          <a href="/pictures" class="nav-link">Pictures</a>
+        <li>
+          <a href="/pictures">Pictures</a>
         </li>
-        <li {@eq key=rootPath value="/blog"} class="nav-item active" {:else} class="nav-item" {/eq}>
-          <a href="/blog" class="nav-link">Blog</a>
+        <li>
+          <a href="/blog">Blog</a>
         </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">About Me</a>
+        <li>
+          <a href="/about-me">About Me</a>
         </li>
       </ul>
-    </div>
-  </nav>
-</header>
+    </nav>
+  </header>

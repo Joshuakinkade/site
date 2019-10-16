@@ -1,4 +1,141 @@
-.site-header .navbar {
-  background-color: $white;
-  font-family: sans-serif;
+@import "../variables";
+
+.site-title {
+  text-align: center;
+  h1 {
+    margin: 18px 0;
+    font-size: $font-size-4;
+  }
+}
+
+.site-nav {
+  ul {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    &:before {
+      content: '';
+      display: block;
+      width: 50%;
+      margin: 0 auto;
+      margin-top: 8px;
+      border-top: solid black 1px;
+    }
+  }
+
+  ul.open {
+    display: block;
+  }
+
+  li {
+    font-size: $font-size-1;
+    font-weight: 600;
+    text-align: center;
+
+    a {
+      display: block;
+      padding-top: 8px;
+    }
+
+    a:after {
+      content: '';
+      display: block;
+      width: 50%;
+      margin: 0 auto;
+      margin-top: 8px;
+      border-bottom: solid black 1px;
+    }
+
+    &:last-child a:after{
+      display: none;
+    }
+  }
+
+  button.nav-toggle {
+    border: none;
+    background: transparent;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: $font-size-2;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    width: 100%;
+    margin: 0;
+    display: block;
+    text-align: center;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 8px;
+    border-top: solid black 2px;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 8px;
+    border-bottom: solid black 2px;
+  }
+}
+
+@media(min-width: 768px) {
+  .site-title {
+    h1 {
+      margin: 36px 0;
+      font-size: $font-size-6;
+    }
+  }
+
+  .site-nav {
+    // padding: 14px 0;
+    text-align: center;
+    // border-top: solid black 1px;
+    // border-bottom: solid black 1px;
+
+    &:before {
+      margin-top: 16px;
+      width: 100%;
+    }
+
+    &:after {
+      margin-top: 16px;
+      width: 100%;
+    }
+
+    ul {
+      display: block;
+
+      &:before {
+        display: none;
+      }
+    }
+
+    li {
+      display: inline-block;
+      margin: 0 16px;
+
+      a:after {
+        display: none;
+      }
+    }
+
+    // li.active {
+    //   a {
+    //     text-decoration: none;
+    //     // color: firebrick;
+    //   }
+    // }
+
+    button.nav-toggle {
+      display: none;
+    }
+  }
 }

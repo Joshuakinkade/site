@@ -44,7 +44,7 @@ export const index = (req,res) => {
 
       scripture = scripture ? scripture.toJSON()  : null;
 
-      res.render('home',getContext('Home', req, {recents, scripture}));
+      res.render('home', getContext('Home', req, {recents, scripture}));
     })
     .catch( err => {
       logger.error(err.message);

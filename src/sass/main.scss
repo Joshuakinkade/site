@@ -1,22 +1,11 @@
 @import "variables";
-@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "base";
 @import "components/siteheader";
 
-html, body {
-  height: 100%;
-}
+footer {
+  margin: 16px 0;
 
-.page-content {
-  padding-top: 56px;
-  height: 100%;
-}
-
-::selection {
-  color: darkred;
-  background-color: whitesmoke;
-}
-
-::-moz-selection {
-  color: darkred;
-  background-color: whitesmoke;
+  small {
+    font-size: $font-size-0;
+  }
 }

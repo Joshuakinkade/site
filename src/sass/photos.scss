@@ -17,11 +17,15 @@ a .photo-info {
   }
 }
 
+.photo-grid {
+  margin: 36px 0;
+}
+
 @media (min-width: map-get($map: $grid-breakpoints, $key: 'lg')) {
   .photo-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 2rem;
+    grid-gap: 36px;
   }
 
   .album-tile {

@@ -1,0 +1,29 @@
+a {
+  color: black;
+  // text-decoration: none;
+
+  &:hover {
+    // text-decoration: underline;
+    color: lighten($color: black, $amount: 30%);
+  }
+
+  &:visited {
+    color: black;
+  }
+}
+
+body, html {
+  margin: 0;
+}
+
+body {
+  margin: 0 16px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+  background-color: #fefefe;
+  color: #222;
+}
+
+h1 {
+  font-size: 3em;
+}

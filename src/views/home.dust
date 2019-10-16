@@ -5,67 +5,67 @@
 {/pageStyles}
 
 {<content}
-  <div class="scripture">
-    {?scripture}
-      <blockquote class="clearfix">
-        <p>{scripture.text}</p>
-        <cite>{scripture.reference}</cite>
-      </blockquote>
-    {/scripture}
-  </div>
-  <div class="recent-posts">
-    <h2>Recent Posts</h2>
-    <div class="posts">
-      {#recents}
-        <div class="post-summary">
-          {@eq key=type value="Album"}
-            <a href="/pictures/{slug}">
-              <h3>
-                {name}              
-              </h3>
-              <div class="sample">
-                <div class="photo-block">
-                  <div class="photo-outer mid">
-                    <div class="photo-inner">
-                      {?coverPhoto}
-                        <img src="/pictures/{slug}/thumb/{coverPhoto.filename}"/>
-                      {:else}
-                        <img src="/images/no-photo.jpg"/>
-                      {/coverPhoto}
-                    </div>
-                  </div>
-                  <div class="text">
-                    <p><span class="badge badge-pill badge-light">Photo Album</span></p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          {/eq}
-          {@eq key=type value="Post"}
-            <a href="/blog/{slug}">
-              <h3>
-                {title}
-              </h3>
-              <div class="sample">
-                <div class="photo-block">
-                  <div class="photo-outer mid">
-                    <div class="photo-inner">
-                      {?coverPhoto}
-                        <img src="/pictures/{coverPhoto.album.slug}/thumb/{coverPhoto.filename}"/>
-                      {:else}
-                        <img src="/images/no-photo.jpg"/>
-                      {/coverPhoto}
-                    </div>
-                  </div>
-                  <div class="text">
-                    <p><span class="badge badge-pill badge-light">Blog Post</span></p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          {/eq}
+  <section class="scripture">
+    <blockquote>
+      <p>{scripture.text}</p>
+      <cite>{scripture.reference}</cite>
+    </blockquote>
+  </section>
+  <section class="content-grid">
+    <section class="snapshots">
+      <div class="view">
+        <h2>Today in 2014</h2>
+        <div class="picture">
+          <div class="picture-inner"></div>
         </div>
+      </div>
+      <div class="view">
+          <h2>September Highlights</h2>
+          <div class="picture">
+            <div class="picture-inner"></div>
+          </div>
+        </div>
+    </section>
+    <section class="recents">
+      {#recents}
+      <div class="post">
+        <h2>{name}</h2>
+        <div class="picture">
+          <div class="picture-inner">
+            {?coverPhoto}
+              <img src="/pictures/{slug}/thumb/{coverPhoto.filename}"/>
+            {:else}
+              <img src="/images/no-photo.jpg"/>
+            {/coverPhoto}
+          </div>
+        </div>
+        <div class="sample">
+            <p>{description}</p>
+        </div>
+      </div>
       {/recents}
-    </div>
-  </div>
+    </section>
+    <section class="quick-pics">
+      <header>
+        <h2>Snapshots</h2>
+      </header>
+      <main>
+        <div class="quick-pic">
+          <div class="picture">
+            <div class="picture-inner"></div>
+          </div>
+        </div>
+        <div class="quick-pic">
+          <div class="picture">
+            <div class="picture-inner"></div>
+          </div>
+        </div>
+        <div class="quick-pic">
+          <div class="picture">
+            <div class="picture-inner"></div>
+          </div>
+        </div>
+    </main>
+    </section>
+  </section>
 {/content}

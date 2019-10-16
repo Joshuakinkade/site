@@ -5,10 +5,7 @@
 {/pageStyles}
 
 {<content}
-  <header class="page-header">
-    <h1>Josh's Pictures</h1>
-  </header>
-  <main class="gallery">
+  <section class="gallery">
     <div class="photo-grid">
       {#albums}
         <div class="album-tile">
@@ -32,5 +29,5 @@
         </div>
       {/albums}
     </div>
-  </main>
+  </section>
 {/content}
