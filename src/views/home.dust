@@ -33,7 +33,7 @@
         <div class="picture">
           <div class="picture-inner">
             {?coverPhoto}
-              <img src="/pictures/{slug}/thumb/{coverPhoto.filename}"/>
+              <img src="/pictures/{slug}/mid/{coverPhoto.filename}"/>
             {:else}
               <img src="/images/no-photo.jpg"/>
             {/coverPhoto}

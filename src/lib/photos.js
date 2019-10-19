@@ -60,9 +60,9 @@ export default class PhotoStorage {
       if (photoData) {
         let photo = sharp(photoData).withMetadata();
         if (size === 'thumb') {
-          photo = photo.resize(512,null).jpeg({quality:50});
+          photo = photo.resize(512,null).jpeg({quality: 80});
         } else if (size === 'mid') {
-          photo = photo.resize(1366,null).jpeg({quality: 75});
+          photo = photo.resize(1366,null).jpeg({quality: 90});
         }
         return photo.toBuffer()
           .then( (data) => {
