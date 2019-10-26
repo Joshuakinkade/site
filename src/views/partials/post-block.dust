@@ -1,0 +1,13 @@
+<div class="post">
+  <h2>{name}</h2>
+  {?coverPhoto}
+  <div class="picture">
+    <div class="picture-inner">
+      <img src="/pictures/{slug}/mid/{coverPhoto.filename}"/>
+    </div>
+  </div>
+  {/coverPhoto}
+  <div class="sample">
+      <p>{description}</p>
+  </div>
+</div>

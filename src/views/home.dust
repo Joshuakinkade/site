@@ -12,42 +12,29 @@
     </blockquote>
   </section>
   <section class="content-grid">
-    <section class="snapshots">
-      <div class="view">
-        <h2>Today in 2014</h2>
-        <div class="picture">
-          <div class="picture-inner"></div>
-        </div>
-      </div>
-      <div class="view">
-          <h2>September Highlights</h2>
-          <div class="picture">
-            <div class="picture-inner"></div>
-          </div>
-        </div>
-    </section>
     <section class="recents">
       {#recents}
       <div class="post">
-        <h2>{name}</h2>
+        <header>
+          <h2>{name}</h2>
+          <p class="meta">{start_date} - {end_date}</p>
+        </header>
+        {?coverPhoto}
         <div class="picture">
           <div class="picture-inner">
-            {?coverPhoto}
-              <img src="/pictures/{slug}/mid/{coverPhoto.filename}"/>
-            {:else}
-              <img src="/images/no-photo.jpg"/>
-            {/coverPhoto}
+            <img src="/pictures/{slug}/mid/{coverPhoto.filename}"/>
           </div>
         </div>
+        {/coverPhoto}
         <div class="sample">
             <p>{description}</p>
         </div>
       </div>
       {/recents}
     </section>
-    <section class="quick-pics">
+    <section class="looking-back">
       <header>
-        <h2>Snapshots</h2>
+        <h2>Looking Back</h2>
       </header>
       <main>
         <div class="quick-pic">

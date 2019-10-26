@@ -5,16 +5,22 @@
 {/pageStyles}
 
 {<content}
+  <section class="scripture">
+    <blockquote>
+      <p>Deslight yourself in the LORD, and he will give you the desires of your heart.</p>
+      <cite>Psalm 37:4</cite>
+    </blockquote>
+  </section>
   <section class="gallery">
     <div class="photo-grid">
       {#albums}
-        <div class="album-tile">
+        <!-- <div class="album-tile">
           <a href="/pictures/{slug}">
             <div class="photo-block">
               <div class="photo-outer short">
                 <div class="photo-inner">
                   {?coverPhoto}
-                    <img src="/pictures/{slug}/thumb/{coverPhoto.filename}"/>
+                    <img src="/pictures/{slug}/mid/{coverPhoto.filename}"/>
                   {:else}
                     <img src="/images/no-photo.jpg"/>
                   {/coverPhoto}
@@ -26,6 +32,19 @@
               <p>{dateRange}</p>
             </div>
           </a>
+        </div> -->
+        <div class="post">
+          <h2>{name}</h2>
+          {?coverPhoto}
+          <div class="picture">
+            <div class="picture-inner">
+              <img src="/pictures/{slug}/mid/{coverPhoto.filename}"/>
+            </div>
+          </div>
+          {/coverPhoto}
+          <div class="sample">
+              <p>{description}</p>
+          </div>
         </div>
       {/albums}
     </div>

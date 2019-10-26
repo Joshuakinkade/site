@@ -1,6 +1,7 @@
 @import "variables";
 @import "components/page-header";
 @import "components/photo-block";
+@import "components/post";
 
 .photo-info {
   margin: .5em;
@@ -21,12 +22,17 @@ a .photo-info {
   margin: 36px 0;
 }
 
+.album-tile:first-child {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
 @media (min-width: map-get($map: $grid-breakpoints, $key: 'lg')) {
-  .photo-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 36px;
-  }
+  // .photo-grid {
+  //   display: grid;
+  //   grid-template-columns: repeat(2, 1fr);
+  //   grid-gap: 36px;
+  // }
 
   .album-tile {
     border-bottom: solid rgba($body-color, .5) 1px;

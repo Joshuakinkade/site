@@ -9,3 +9,56 @@ footer {
     font-size: $font-size-0;
   }
 }
+
+.scripture {
+  margin: 64px auto;
+
+  blockquote {
+    font-size: $font-size-3;
+
+    p {
+      margin: 0;
+      font-style: italic;
+    }
+
+    cite {
+      font-size: 18px;
+      float: right;
+
+      &::before {
+        content: '-- ';
+      }
+    }
+
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+}
+
+.picture {
+  position: relative;
+  padding-top: 67%;
+
+  .picture-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: lightgray;
+    overflow: hidden;
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+@media(min-width: 768px) {
+  .scripture {
+    max-width: 60%;
+  }
+}

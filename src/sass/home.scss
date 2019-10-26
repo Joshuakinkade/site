@@ -1,5 +1,7 @@
 @import "variables";
 
+@import "components/post";
+
 /*********************************** GLOBAL **********************************/
 // .container {
 //   max-width: 1024px;
@@ -14,91 +16,12 @@
   .recents {
     order: 1;
     min-width: 100%;
+    flex: 2;
   }
 
-  .snapshots {
+  .looking-back {
     order: 2;
     flex: 1;
-    margin-right: 16px;
-  }
-
-  .quick-pics {
-    order: 3;
-    flex: 1;
-  }
-}
-
-.scripture {
-  margin: 64px auto;
-
-  blockquote {
-    font-size: $font-size-3;
-
-    p {
-      margin: 0;
-      font-style: italic;
-    }
-
-    cite {
-      font-size: 18px;
-      float: right;
-
-      &::before {
-        content: '-- ';
-      }
-    }
-
-    &:after {
-      content: '';
-      display: table;
-      clear: both;
-    }
-  }
-}
-
-.post {
-  margin: 16px 0;
-  border-top: solid gray 1px;
-
-  h2 {
-    margin: 8px 0;
-    font-weight: 400;
-    text-align: center;
-    font-size: $font-size-2;
-  }
-
-  p {
-    font-size: 18px;
-    text-align: left;
-  }
-
-  &:first-child {
-    border-top: none;
-
-    h2 {
-      margin: 8px 0;
-      font-size: $font-size-4;
-      line-height: $font-size-4;
-    }
-  }
-}
-
-.picture {
-  position: relative;
-  padding-top: 67%;
-
-  .picture-inner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: lightgray;
-    overflow: hidden;
-
-    img {
-      max-width: 100%;
-    }
   }
 }
 
@@ -125,60 +48,30 @@
 }
 
 @media(min-width: 768px) {
-  .scripture {
-    max-width: 60%;
-  }
-
   .content-grid {
     margin: 32px 0;
     display: flex;
-  
-    .snapshots {
-      flex: 1;
-      border-right: solid gray 1px;
-      text-align: center;
-      padding-right: 16px;
-      margin-top: 30px;
-      margin-right: 0;
-      order: 1;
-    }
   
     .recents {
       flex: 2;
       text-align: center;
       padding: 0 16px;
-      order: 2;
+      order: 1;
       min-width: auto;
     }
   
-    .quick-pics {
+    .looking-back {
       flex: 1;
       border-left: solid gray 1px;
       text-align: center;
       padding-left: 16px;
       margin-top: 30px;
-      order: 3;
+      order: 2;
   
       h2 {
         margin-top: 20px;
         margin-bottom: 10px;
       }
-    }
-  }
-
-  .post {
-    h2 {
-      font-size: $font-size-3;
-      line-height: $font-size-3;
-      margin: 16px 0;
-    }
-  }
-
-  .post:first-child {
-    h2 {
-      font-size: $font-size-5;
-      line-height: $font-size-5;
-      margin: 16px 0;
     }
   }
 }
