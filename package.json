@@ -38,7 +38,7 @@
     "passport": "^0.4.0",
     "passport-http": "^0.3.0",
     "pug": "^2.0.3",
-    "sharp": "^0.20.5",
+    "sharp": "^0.30.5",
     "yaml": "^1.0.0-rc.7"
   },
   "devDependencies": {
